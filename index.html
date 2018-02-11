@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Tetris</title>
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/interface.css" />
+        <link rel="stylesheet" href="css/info.css" />
+        <link rel="stylesheet" href="css/button.css" />
+    </head>
+    <body>
+        <div id="root">
+            <div id="game">
+                <div id="head">
+                    <span class="end1" width="40px"></span>
+                    <span class="dot1"></span>
+                    <span class="dot1"></span>
+                    <span class="dot1"></span>
+                    <span class="dot1"></span>
+                    <span class="end2" width="40px"></span>
+                    <span class="dot2"></span>
+                    <span class="dot2"></span>
+                    <span class="dot2"></span>
+                    <span class="dot2"></span>
+                    <h1>T E T R I S</h1>
+                </div>
+                <div id="container">
+                    <div id="border">
+                        <div id="main">
+                            <div id="title">T E T R I S</div>
+                            <canvas id="field" width="150px" height="300px"></canvas>
+                        </div>
+                        <div id="info">
+                            <div id="point">
+                                <p>Point</p>
+                                <span class="bg default"></span>
+                                <span class="bg default"></span>
+                                <span class="bg default"></span>
+                                <span class="bg default"></span>
+                                <span class="bg default"></span>
+                                <span class="bg default"></span>
+                            </div>
+                            <div id="cleans">
+                                <p>Cleans</p>
+                                <span class="bg default"></span>
+                                <span class="bg default"></span>
+                                <span class="bg default"></span>
+                                <span class="bg default"></span>
+                                <span class="bg default"></span>
+                                <span class="bg default"></span>
+                            </div>
+                            <div id="level">
+                                <p>Level</p>
+                                <span class="bg default"></span>
+                                <span class="bg default"></span>
+                            </div>
+                            <div id="next">
+                                <p>Next</p>
+                                <canvas width="60px" height="30px"></canvas>
+                            </div>
+                            <div id="status">
+                                <span class="bg sign unpaused"></span>
+                                <div id="clock">
+                                    <span class="bg default"></span>
+                                    <span class="bg default"></span>
+                                    <span class="bg tik"></span>
+                                    <span class="bg default"></span>
+                                    <span class="bg default"></span>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="button">
+                <div id="rotate" class="b_text b_bg1 b_dire">
+                    <span>Rotate</span>
+                    <i class></i>
+                    <em></em>
+                </div>
+                <div id="down" class="b_text b_bg1 b_dire">
+                    <i class></i>
+                    <em></em>
+                    <span>Down</span>
+                </div>
+                <div id="left" class="b_text b_bg1 b_dire">
+                    <i class></i>
+                    <em></em>
+                    <span>Left</span>
+                </div>
+                <div id="right" class="b_text b_bg1 b_dire">
+                    <i class></i>
+                    <em></em>
+                    <span>Right</span>
+                </div>
+                <div id="drop" class="b_text b_bg1 b_space">
+                    <i class></i>
+                    <span>Drop[Space]</span>
+                </div>
+                <div id="pause" class="b_text b_bg2 b_control">
+                    <i class></i>
+                    <span>Pause[P]</span>
+                </div>
+                <div id="reset" class="b_text b_bg3 b_control">
+                    <i class></i>
+                    <span>Reset[R]</span>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <script src="js/game/utils/function.js"></script>
+        <script src="js/game/utils/eventutil.js"></script>
+        <script src="js/game/drawing_board.js"></script>
+        <script src="js/game/game.js"></script>
+        <script src="js/game/game_scene.js"></script>
+        <script src="js/game/game_board.js"></script>
+        <script src="js/game/game_indicator.js"></script>
+        <script src="js/game/component/pause_sign.js"></script>
+        <script src="js/game/component/clock.js"></script>
+        <script src="js/game/storage/score.js"></script>
+        
+        <script src="js/scene/main/field.js"></script>
+        <script src="js/scene/main/blockcomb.js"></script>
+        <script src="js/scene/main/preview.js"></script>
+        <script src="js/scene/main/index.js"></script>
+        
+        <script src="js/scene/title/index.js"></script>
+        
+        <script src="js/scene/reset/index.js"></script>
+        
+        <script src="js/const.js"></script>        
+        <script src="js/main.js"></script>
+    </body>
+</html>

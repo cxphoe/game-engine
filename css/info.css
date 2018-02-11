@@ -1,0 +1,104 @@
+div#info {
+    width: 70px;
+    position: absolute;
+    right: 10px;
+    top: 0;
+}
+
+div#info span {
+    float: right;
+    width: 10px;
+    height: 16px;
+    overflow: hidden;
+}
+
+span.bg {
+    background: url("../images/bg.png") no-repeat;
+}
+
+span.default {
+    background-position: -161px -20px;
+}
+
+span.n0 {
+    background-position: -56px -20px;
+}
+
+span.n1 {
+    background-position: -66px -20px;
+}
+
+span.n2 {
+    background-position: -77px -20px;
+}
+
+span.n3 {
+    background-position: -88px -20px;
+}
+
+span.n4 {
+    background-position: -98px -20px;
+}
+
+span.n5 {
+    background-position: -108px -20px;
+}
+
+span.n6 {
+    background-position: -119px -20px;
+}
+
+span.n7 {
+    background-position: -129px -20px;
+}
+
+span.n8 {
+    background-position: -140px -20px;
+}
+
+span.n9 {
+    background-position: -150px -20px;
+}
+
+p {
+    padding: 0px 0 0;
+    line-height: 40px;
+}
+
+div#next {
+    margin-top: 20px;
+}
+
+div#next canvas {
+    margin-left: 2px;
+}
+
+div#status {
+    width: 100%;
+    margin-top: 60%;
+    position: absolute;
+}
+
+div#status span.sign {
+    width: 14px;
+    height: 13px;
+    float: left;
+    margin-right: 0px;
+    margin-top: 2px;
+}
+
+span.unpaused {
+    background-position: -76px -57px;
+}
+
+span.paused {
+    background-position: -57px -57px;
+}
+
+span.tik {
+    background-position: -173px -19px;
+}
+
+span.tok {
+    background-position: -183px -19px;
+}
