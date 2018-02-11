@@ -4,6 +4,7 @@ class GameBoard {
         this.numElts = components
         this.titleCpn = titleCpn
         this.default(defaultNum)
+        log(this.defaultState)
     }
 
     static new(...args) {
@@ -15,7 +16,7 @@ class GameBoard {
         if (defaultNum == undefined) {
             this.defaultState = 'default'
         } else {
-            this.defaultState = n + defaultNum
+            this.defaultState = 'n' + defaultNum
         }
     }
 

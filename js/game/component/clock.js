@@ -10,8 +10,8 @@ class Clock {
 
     setup() {
         var cpns = document.querySelectorAll('#clock span')
-        this.hourBoard = GameBoard.new([cpns[3], cpns[4]], 0)
-        this.minuteBoard = GameBoard.new([cpns[0], cpns[1]], 0)
+        this.hourBoard = GameBoard.new([cpns[3], cpns[4]], '', 0)
+        this.minuteBoard = GameBoard.new([cpns[0], cpns[1]], '', 0)
         this.indicator = GameIndicator.new(game, cpns[2])
         
         var now = new Date()
