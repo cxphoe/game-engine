@@ -1,6 +1,6 @@
 class SceneMain extends GameScene {
     constructor (game) {
-        super(game)        
+        super(game)
     }
 
     setup() {
@@ -12,46 +12,70 @@ class SceneMain extends GameScene {
         this.pushElement(this.bc)
         game.field.setUpScoreRule(this)
 
-        // 按 '向右箭头' 右移
-        game.registerAction(37, function () {
-            that.bc.moveLeft()
-        }, ['mousedown', 'keydown'])
-    
         // 按 '向左箭头' 左移
-        game.registerAction(39, function () {
-            that.bc.moveRight()
-        }, ['mousedown', 'keydown'])
-    
-        // 按 '向下箭头' 加速
-        game.registerAction(40, function () {
-            game.speedUp = true
-        }, ['mousedown', 'keydown'])
-        
-        // 松开 '向下箭头' 恢复速度
-        game.registerAction(40, function () {
-            game.speedUp = false
-        }, ['mouseup', 'keyup'])
-    
-        // 按 '向上箭头' 旋转
-        game.registerAction(38, function () {
-            that.bc.rotate()
-        }, ['mousedown', 'keydown'])
+        game.registerAction(37, EventController.new({
+            key: 'left',
+            begin: 200,
+            interval: 100,
+            callback: (clear) => {
+                that.bc.moveLeft()
+            },
+        }))
 
-        // 按 '空格' 旋转
-        game.registerAction(32, function () {
-            that.bc.drop()
-        }, ['mousedown', 'keydown'])
+        // 按 '向右箭头' 右移
+        game.registerAction(39, EventController.new({
+            key: 'right',
+            begin: 200,
+            interval: 100,
+            callback: (clear) => {
+                that.bc.moveRight()
+            },
+        }))
+        
+        // 按 '向下箭头' 加速
+        game.registerAction(40, EventController.new({
+            key: 'down',
+            callback: (clear) => {
+                that.bc.retired ? clear() : that.bc.updateCD = -10
+            },
+        }))
+        
+        // 按 '向上箭头' 旋转
+        game.registerAction(38, EventController.new({
+            key: 'up',
+            once: true,
+            callback: (clear) => {
+                that.bc.rotate()
+            },
+        }))
+
+        // 按 '空格' 降落
+        game.registerAction(32, EventController.new({
+            key: 'space',
+            once: true,
+            callback: (clear) => {
+                that.bc.drop()
+            },
+        }))
 
         // 按 'R' 重置
-        game.registerAction(82, function () {
-            that.resetGame()
-        }, ['mousedown', 'keydown'])
+        game.registerAction(82, EventController.new({
+            key: 'r',
+            once: true,
+            callback: (clear) => {
+                that.resetGame()
+            },
+        }))
 
         // 设置 'P' 成为game的 pause key
         var pauseKeyCode = 80
-        game.registerAction(pauseKeyCode, function () {
-            game.isPaused() ? game.unpause() : game.pause()
-        }, ['mousedown', 'keydown'])
+        game.registerAction(pauseKeyCode, EventController.new({
+            key: 'p',
+            once: true,
+            callback: (clear) => {
+                game.isPaused() ? game.unpause() : game.pause()
+            },
+        }))
         game.setPauseKeyCode(pauseKeyCode)
     }
 

@@ -14,8 +14,6 @@ class BlockComb {
     default() {
         this.defaultColor = OCCUPIED_COLOR
         this.indicateColor = INDICATE_COLOR
-        // blockcomb move 和 rotate 的CD
-        this.maxChangeCD = 1
         // blockcomb 下降的CD
         this.maxUpdateCD = Math.floor(this.game.fps / 1.5)
     }
@@ -39,19 +37,17 @@ class BlockComb {
         this.x = 3
         this.y = -coorDiff(this.coors, 1) - 1
         this.color = this.defaultColor
-        this.rotateCD = 0
         this.updateCD = this.maxUpdateCD
         this.retired = false    // retired 为真时重置 blockcomb
     }
 
     move(offset) {
-        if (this.changeCD || this.retired) {
+        if (this.retired) {
             return
         }
         
         var field = this.game.field
         if (! collide(this.x+offset, this.y, this.coors, field)) {
-            this.changeCD = this.maxChangeCD
             this.x += offset
         }
     }
@@ -65,14 +61,13 @@ class BlockComb {
     }
 
     rotate() {
-        if (this.changeCD || this.retired) {
+        if (this.retired) {
             return
         }
         // get rotated coordinates
         var newCoors = rotateCoors(this.coors)
         var field = this.game.field
         if (! collide(this.x, this.y, newCoors, field)) {
-            this.changeCD = this.maxChangeCD
             this.coors = newCoors
         }
     }
@@ -118,14 +113,6 @@ class BlockComb {
         return false
     }
     
-    debug() {
-        this.maxChangeCD = config.game.bcChangeCD.value
-        // if just assign the maxUpdateCD to config value
-        if (this.maxUpdateCD != 0) {
-            this.maxUpdateCD = config.game.bcUpdateCD.value
-        }
-    }
-
     draw() {
         var game = this.game
         for (var c of this.coors) {
@@ -138,18 +125,11 @@ class BlockComb {
     }
 
     update() {
-        if (this.game.speedUp) {
-            this.updateY()
-        }
-
-        if (this.updateCD == 0) {
+        if (this.updateCD <= 0) {
             this.updateCD = this.maxUpdateCD
             this.updateY()
         } else {
             this.updateCD--
-        }
-        if (this.changeCD) {
-            this.changeCD--
         }
     }
 }

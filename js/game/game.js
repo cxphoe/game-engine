@@ -56,8 +56,8 @@ class Game extends DrawingBoard {
         this.pauseSign.unpause()
     }
 
-    registerAction(keyCode, callback, allowed) {
-        this.eventUtil.registerCallback(keyCode, callback, allowed)
+    registerAction(keyCode, controller) {
+        this.eventUtil.registerController(keyCode, controller)
     }
 
     removeAllActions() {
@@ -72,6 +72,7 @@ class Game extends DrawingBoard {
         // Scene.new will:
         //      1st: create a singular instance at the first time or
         //      2nd: just initialize the instance
+        this.eventUtil.init()
     }
 
     drawBlock(x, y, color) {

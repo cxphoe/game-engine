@@ -7,13 +7,16 @@ Tetris 俄罗斯方块
 
 由于未学习 React、Redux，此项目的所有功能都是用原生js写的
 
+## Browser
+目前只支持 chrome
+
 ## Features
-- 数据保存： 用storage对象保存游戏记录
+- 数据保存： 用localStorage对象保存游戏记录
 - 游戏按键模拟
+- 平滑的移动：通过 EventUtil 以及 EventController 限制了原生 keydown 的触发频率
 
 ## ToDo
 
-- 响应式
-- 降低方块左移、右移、旋转频率
-- level
-- 音效
+1. level 功能
+2. 音效
+3. 响应式

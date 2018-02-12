@@ -6,6 +6,7 @@ class Preview extends DrawingBoard {
         this.default()
     }
 
+    // 更新 coors 供下一次 blockComb 重置使用
     next() {
         this.coors = randBlockType()
         var diffX = coorDiff(this.coors, 0)

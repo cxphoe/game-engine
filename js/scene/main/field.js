@@ -101,6 +101,8 @@ class Field {
         })
     }
 
+    // 在 echoFullLines() 中 full lines 的颜色已设置成
+    // defaultColor 因此直接将它移到数组顶部
     clearFullLines() {
         var ls = this.lines
         ls.forEach((li) => {
@@ -113,7 +115,6 @@ class Field {
 
     score() {
         this.scoring = true
-        log('echo full lines...')
         this.process = setInterval(() => {
             this.echoFullLines()
         }, 1000 / this.fullLinesEchoSpeed)

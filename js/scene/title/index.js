@@ -12,9 +12,14 @@ class SceneTitle extends GameScene {
         var game = this.game
         var that = this
 
-        game.registerAction(32, function () {
-            that.startGame()
-        }, ['mousedown', 'keydown'])
+        // 按 空格 开始游戏
+        game.registerAction(32, EventController.new({
+            key: 'space',
+            once: true,
+            callback: (clear) => {
+                that.startGame()
+            },
+        }))
     }
 
     init() {
