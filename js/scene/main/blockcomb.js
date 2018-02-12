@@ -65,7 +65,7 @@ class BlockComb {
     }
 
     rotate() {
-        if (this.changeCD) {
+        if (this.changeCD || this.retired) {
             return
         }
         // get rotated coordinates
@@ -78,6 +78,9 @@ class BlockComb {
     }
 
     drop() {
+        if (this.game.field.scoring) {
+            return  // field 在计分时不能 drop
+        }
         while (!this.retired) {
             this.updateY()
         }

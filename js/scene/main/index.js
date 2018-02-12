@@ -16,16 +16,15 @@ class SceneMain extends GameScene {
 
         var that = this
         var game = this.game
-        var field = game.field
 
         // 按 '向右箭头' 右移
         game.registerAction(37, function () {
-            that.bc.moveLeft(field)
+            that.bc.moveLeft()
         }, ['mousedown', 'keydown'])
     
         // 按 '向左箭头' 左移
         game.registerAction(39, function () {
-            that.bc.moveRight(field)
+            that.bc.moveRight()
         }, ['mousedown', 'keydown'])
     
         // 按 '向下箭头' 加速
@@ -40,12 +39,12 @@ class SceneMain extends GameScene {
     
         // 按 '向上箭头' 旋转
         game.registerAction(38, function () {
-            that.bc.rotate(field)
+            that.bc.rotate()
         }, ['mousedown', 'keydown'])
 
-        // 按 '向上箭头' 旋转
+        // 按 '空格' 旋转
         game.registerAction(32, function () {
-            that.bc.drop(field)
+            that.bc.drop()
         }, ['mousedown', 'keydown'])
 
         // 按 'R' 重置
