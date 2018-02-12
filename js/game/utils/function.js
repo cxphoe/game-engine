@@ -47,7 +47,8 @@ var getLocalStorage = function () {
     } else if (typeof globalStorage == 'object') {
         return globalStorage[location.host]
     } else {
-        throw new Error('Local storage not available.')
+        console.warn('Local storage not available. Your record will be forgetted after leave')
+        return {}
     }
 }
 

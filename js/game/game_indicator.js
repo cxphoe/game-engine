@@ -11,10 +11,10 @@ class GameIndicator {
 
     setState(state) {
         var cpn = this.component,
-            prev = cpn.getAttribute('class'),
+            prev = cpn.className,
             vals = prev.split(' ')
-        // vals 中最后一个用来表示显示状态
+        // vals 中是最后一个用来表示显示状态
         vals[vals.length - 1] = state
-        cpn.setAttribute('class', vals.join(' '))
+        cpn.className = vals.join(' ')
     }
 }

@@ -13,12 +13,12 @@ class ScoreStorage {
     }
 
     getRecord(key) {
-        var num = parseInt(this.storage.getItem(key))
+        var num = parseInt(this.storage[key])
         return isNaN(num) ? 0 : num
     }
 
     setRecord(key, val) {
-        this.storage.setItem(key, val)
+        this.storage[key] = val
     }
 
     getLastRecord() {

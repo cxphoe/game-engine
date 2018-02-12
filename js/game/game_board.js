@@ -4,7 +4,7 @@ class GameBoard {
         this.numElts = components
         this.titleCpn = titleCpn
         this.default(defaultNum)
-        log(this.defaultState)
+        //log(this.defaultState)
     }
 
     static new(...args) {
@@ -28,7 +28,7 @@ class GameBoard {
     getNumber() {
         var lastChar, eltClass, n, sum = 0
         for (var i = this.numElts.length - 1; i >= 0; i--) {
-            eltClass = this.numElts[i].getAttribute('class')
+            eltClass = this.numElts[i].className
             lastChar = eltClass[eltClass.length-1]
             n = parseInt(lastChar)
             if (!isNaN(n)) {
@@ -60,7 +60,7 @@ class GameBoard {
     // 否则就设置与 digit 相对应的数字状态
     setDigit(digit, elt) {
         // 得到原始的状态
-        var state = elt.getAttribute('class').split(' ')
+        var state = elt.className.split(' ')
         if (digit != null) {
             // 将表示数字状态的 class 改为与 digit 相对应的 class
             state[state.length - 1] = 'n' + digit
@@ -68,6 +68,6 @@ class GameBoard {
             // 将数字状态设置为默认
             state[state.length - 1] = this.defaultState
         }
-        elt.setAttribute('class', state.join(' '))
+        elt.className = state.join(' ')
     }
 }

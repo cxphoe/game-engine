@@ -3,12 +3,13 @@ class Game extends DrawingBoard {
         super('#field')
         this.blockSize = this.canvas.width / 10        
         this.process = null
+        this.callbackRun = callback
 
         this.default()
         this.getComponent()
         this.init()
         this.setupEvent()
-        callback(this)
+        this.__start()
     }
     
     default() {
@@ -97,5 +98,10 @@ class Game extends DrawingBoard {
         this.process = setTimeout(() => {
            this.runloop() 
         }, 1000 / this.fps);
+    }
+
+    __start() {
+        this.replaceScene(SceneTitle)
+        this.callbackRun(this)
     }
 }

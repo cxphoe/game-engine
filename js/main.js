@@ -1,8 +1,5 @@
-var __main = function () {
+window.onload = function() {
     var g = Game.instance(function (game) {
-        game.replaceScene(SceneTitle)
         game.run()
     })
 }
-
-__main()
