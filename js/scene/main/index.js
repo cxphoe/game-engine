@@ -1,21 +1,16 @@
 class SceneMain extends GameScene {
     constructor (game) {
-        super(game)
-        this.bc = BlockComb.instance(game)
-        this.setup()
+        super(game)        
     }
 
     setup() {
-        this.pushElement(this.game.field)
-        this.pushElement(this.bc)
-        this.game.field.setUpScoreRule(this)
-    }
-
-    init() {
-        this.bc.init()
-
         var that = this
         var game = this.game
+
+        this.bc = BlockComb.instance(game)
+        this.pushElement(this.game.field)
+        this.pushElement(this.bc)
+        game.field.setUpScoreRule(this)
 
         // 按 '向右箭头' 右移
         game.registerAction(37, function () {
@@ -60,6 +55,10 @@ class SceneMain extends GameScene {
         game.setPauseKeyCode(pauseKeyCode)
     }
 
+    init() {
+        this.bc.init()
+    }
+
     addScore(score) {
         var sb = this.game.scoreBoard
         var sprev = sb.getNumber()
@@ -83,7 +82,7 @@ class SceneMain extends GameScene {
     resetGame() {
         var game = this.game
         
-        game.replaceScene(SceneReset)
+        game.replaceScene(SceneReset, 'Reset')
         var s = game.storage
         var maxRecord = s.getMaxRecord()
         var lastRecord = game.scoreBoard.getNumber()
@@ -112,7 +111,7 @@ class SceneMain extends GameScene {
                 if (game.speedUp) {
                     game.speedUp = false
                 }
-                bc.init(this.preview)
+                bc.init()
                 this.addScore(10)
             }
         } else {

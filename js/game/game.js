@@ -64,10 +64,11 @@ class Game extends DrawingBoard {
         this.eventUtil.removeAllCallbacks()
     }
 
-    replaceScene(Scene) {
+    replaceScene(Scene, name) {
         // cancel the registered functions
-        this.removeAllActions()
-        this.scene = Scene.new(this) 
+        // this.removeAllActions()
+        this.sceneName = name
+        this.scene = Scene.new(this)
         // Scene.new will:
         //      1st: create a singular instance at the first time or
         //      2nd: just initialize the instance
@@ -101,7 +102,7 @@ class Game extends DrawingBoard {
     }
 
     __start() {
-        this.replaceScene(SceneTitle)
+        this.replaceScene(SceneReset)
         this.callbackRun(this)
     }
 }

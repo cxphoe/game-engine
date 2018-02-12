@@ -8,20 +8,24 @@ class SceneTitle extends GameScene {
         this.titleType = 1
     }
 
-    init() {
+    setup() {
         var game = this.game
         var that = this
 
         game.registerAction(32, function () {
             that.startGame()
         }, ['mousedown', 'keydown'])
+    }
+
+    init() {
+        var game = this.game
 
         game.field.draw()
     }
 
     startGame() {
         var game =  this.game
-        game.replaceScene(SceneMain)
+        game.replaceScene(SceneMain, 'main')
         game.init()
         this.title.style.visibility = 'hidden'
     }

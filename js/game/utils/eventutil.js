@@ -3,6 +3,17 @@ class EventUtil {
         this.game = game
         // pauseKeyCode : a special key to unauthorize the use of all the other keys
         this.pauseKeyCode = null
+        /* keyBinds     : will has attritutes as follows
+                {
+                    callbacks: { 
+                        sceneName1 : [callbacks],
+                        sceneName2 : [callbacks],
+                        ... 
+                    },
+                    component: component,
+                }
+        */
+        this.keyBinds = {}
         
         this.processRawBinds()
         this.setup()
@@ -27,43 +38,50 @@ class EventUtil {
         this.pauseKeyCode = keycode
     }
 
+    // 处理设置好的 bindings 得到 keyCodes 对应的元素
     processRawBinds() {
         var rawBinds = BUTTON_BINDINGS,
             binds = {}
         for (var [keyCode, sel] of rawBinds) {
             binds[keyCode] = {
                 component: document.querySelector(sel),
+                sceneCallbacks: {},
             }
         }
         this.keyBinds = binds
     }
 
+    // 根据当前的 game.sceneName 来设置 callback
     registerCallback(keyCode, callback, allowed) {
         if (!allowed) {
             throw new Error('::allowed is ' + allowed.toString() + 
                             ' , an ARRAY containing some allowed types is needed to identify specific event types.')
         }
-        
-        var o = this.keyBinds[keyCode]
-        var callback = {
-            fn: callback,
-            allowed: allowed,
-        }
-        if (!o) {
-            this.keyBinds[keyCode] = {
-                callbacks: [callback]
+
+        var binds = this.keyBinds[keyCode],
+            sceneName = this.game.sceneName,
+            callback = {
+                fn: callback,
+                allowed: allowed,
             }
-        } else if (!o.callbacks) {
-            o.callbacks = [callback]
-        } else {
-            o.callbacks.push(callback)
+
+        if (!binds) {
+            binds = this.keyBinds[keyCode] = {
+                sceneCallbacks: {}
+            }
         }
+        var scs = binds.sceneCallbacks,
+            cs  = scs[sceneName]
+        cs ? cs.push(callback) : scs[sceneName] = [callback]
     }
 
     removeAllCallbacks() {
-        var cbs = this.keyBinds
+        var cbs = this.keyBinds,
+            name = this.game.sceneName
         for (var k in cbs) {
-            cbs[k].callbacks = null
+            for (scs in cbs[k]) {
+                scs[name] = null
+            }
         }
     }
 
@@ -103,7 +121,7 @@ class EventUtil {
                 var o = this.keyBinds[k],
                     paused = game.isPaused(),
                     cpn = o.component,
-                    cs = o.callbacks
+                    cs = o.sceneCallbacks[game.sceneName] // 得到当前场景对应的注册事件
                 if (cpn) {
                     // 更新组件的状态
                     cpn.setAttribute('class', state)
@@ -130,9 +148,10 @@ class EventUtil {
     addBindMouseHandler(type, state, key, keyBind) {
         var cpn = keyBind.component
         this.addHandler(cpn, type, (event) => {
-            var cs = keyBind.callbacks,
-                game = this.game,
-                paused = game.isPaused()
+            var game = this.game,
+                paused = game.isPaused(),
+                cs = keyBind.sceneCallbacks[game.sceneName] // 得到当前场景对应的注册事件
+                
             cpn.setAttribute('class', state)
             // check if it is pause key
             if (!(paused && key != this.pauseKeyCode) && cs) {

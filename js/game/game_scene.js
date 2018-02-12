@@ -2,6 +2,7 @@ class GameScene {
     constructor (game) {
         this.game = game
         this.elements = []
+        this.setup()
     }
 
     static new(game) {

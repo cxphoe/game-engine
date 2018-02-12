@@ -1,7 +1,6 @@
 class SceneReset extends GameScene {
     constructor (game) {
         super(game)
-        this.setup()
     }
 
     setup() {
@@ -26,7 +25,11 @@ class SceneReset extends GameScene {
         var field = this.game.field
         field.setLine(this.index, DEFAULT_COLOR, false)
         if (++this.index == 20) {
-            this.game.replaceScene(SceneTitle)
+            this.restartGame()
         }
+    }
+
+    restartGame() {
+        this.game.replaceScene(SceneTitle, 'title')
     }
 }
