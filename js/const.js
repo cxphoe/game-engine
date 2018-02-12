@@ -8,18 +8,15 @@ const BLOCKTYPE  = [[[0, 0], [1, 0], [2, 0], [3, 0]],
                 ]
 
 // button_bindings : contains [keyCode, sel] pairs
-// sel             : the id of container containing the button
-const BUTTON_BINDINGS = [[38, 'rotate'], // arrow up
-                         [40,   'down'], // arrow down
-                         [37,   'left'], // arrow left
-                         [39,  'right'], // arrow right
-                         [32,   'drop'], // space
-                         [80,  'pause'], // p
-                         [82,  'reset'], // r
+// sel             : the id of related button
+const BUTTON_BINDINGS = [[38, '#rotate_btn'], // arrow up
+                         [40,   '#down_btn'], // arrow down
+                         [37,   '#left_btn'], // arrow left
+                         [39,  '#right_btn'], // arrow right
+                         [32,   '#drop_btn'], // space
+                         [80,  '#pause_btn'], // p
+                         [82,  '#reset_btn'], // r
                         ]
-// btnContainer    : a selector to find the exact same button
-//                   container with different html element
-const BTNCONTAINER = 'i'
 
 const BTN_DOWN_STATE = 'pressed'
 const BTN_UP_STATE = ''

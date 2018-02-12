@@ -29,10 +29,8 @@ class EventUtil {
 
     processRawBinds() {
         var rawBinds = BUTTON_BINDINGS,
-            btnCtn = BTNCONTAINER,
             binds = {}
         for (var [keyCode, sel] of rawBinds) {
-            sel = '#' + sel + ' ' + btnCtn
             binds[keyCode] = {
                 component: document.querySelector(sel),
             }

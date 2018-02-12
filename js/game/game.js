@@ -28,9 +28,9 @@ class Game extends DrawingBoard {
         this.clock = Clock.new()
         this.storage = ScoreStorage.new()
         
-        this.scoreBoard = createBoard('#point span', '#point p')
-        this.clearCountBoard = createBoard('#cleans span', '#cleans p')
-        this.pauseSign = PauseSign.new(this)
+        this.scoreBoard = GameBoard.new('#point span', '#point p')
+        this.clearCountBoard = GameBoard.new('#cleans span', '#cleans p')
+        this.pauseSign = PauseSign.new()
 
         this.field = Field.instance(this)
         this.field.init()

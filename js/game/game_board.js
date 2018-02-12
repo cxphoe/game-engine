@@ -1,23 +1,14 @@
 class GameBoard {
     // Board 用来管理跟数字有关的 elements
-    constructor(components, titleCpn, defaultNum) {
-        this.numElts = components
-        this.titleCpn = titleCpn
-        this.default(defaultNum)
-        //log(this.defaultState)
+    constructor(eltsSel, titleSel) {
+        this.numElts = document.querySelectorAll(eltsSel)
+        if (titleSel) {
+            this.titleCpn = document.querySelector(titleSel)
+        }
     }
 
     static new(...args) {
         return new this(...args)
-    }
-
-    // 设置数字的默认状态
-    default(defaultNum) {
-        if (defaultNum == undefined) {
-            this.defaultState = 'default'
-        } else {
-            this.defaultState = 'n' + defaultNum
-        }
     }
 
     setTitle(str) {
@@ -29,7 +20,7 @@ class GameBoard {
         var lastChar, eltClass, n, sum = 0
         for (var i = this.numElts.length - 1; i >= 0; i--) {
             eltClass = this.numElts[i].className
-            lastChar = eltClass[eltClass.length-1]
+            lastChar = eltClass == '' ? 0 : eltClass[eltClass.length-1]
             n = parseInt(lastChar)
             if (!isNaN(n)) {
                 sum = 10 * sum + n
@@ -56,18 +47,9 @@ class GameBoard {
         }
     }
 
-    // digit 为 null 时设置默认的数字状态
+    // digit 为 null 时清除状态
     // 否则就设置与 digit 相对应的数字状态
     setDigit(digit, elt) {
-        // 得到原始的状态
-        var state = elt.className.split(' ')
-        if (digit != null) {
-            // 将表示数字状态的 class 改为与 digit 相对应的 class
-            state[state.length - 1] = 'n' + digit
-        } else {
-            // 将数字状态设置为默认
-            state[state.length - 1] = this.defaultState
-        }
-        elt.className = state.join(' ')
+        elt.className = digit == null ? '' : 'n' + digit
     }
 }

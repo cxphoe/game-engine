@@ -52,12 +52,6 @@ var getLocalStorage = function () {
     }
 }
 
-var createBoard = function (numEltSel, titleSel) {
-    var cpns = document.querySelectorAll(numEltSel)
-    var tcpn = document.querySelector(titleSel)
-    return GameBoard.new(cpns, tcpn)
-}
-
 var nullFunc = function () {}
 
 var log = console.log.bind(console)

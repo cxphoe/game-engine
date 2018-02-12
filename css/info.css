@@ -1,85 +1,82 @@
-div#info {
+#info {
     width: 70px;
     position: absolute;
     right: 10px;
     top: 0;
 }
 
-div#info span {
-    float: right;
-    width: 10px;
-    height: 16px;
-    overflow: hidden;
-}
-
-span.bg {
-    background: url("../images/bg.png") no-repeat;
-}
-
-span.default {
-    background-position: -161px -20px;
-}
-
-span.n0 {
-    background-position: -56px -20px;
-}
-
-span.n1 {
-    background-position: -66px -20px;
-}
-
-span.n2 {
-    background-position: -77px -20px;
-}
-
-span.n3 {
-    background-position: -88px -20px;
-}
-
-span.n4 {
-    background-position: -98px -20px;
-}
-
-span.n5 {
-    background-position: -108px -20px;
-}
-
-span.n6 {
-    background-position: -119px -20px;
-}
-
-span.n7 {
-    background-position: -129px -20px;
-}
-
-span.n8 {
-    background-position: -140px -20px;
-}
-
-span.n9 {
-    background-position: -150px -20px;
-}
-
-p {
+#info p {
     padding: 0px 0 0;
     line-height: 40px;
 }
 
-div#next {
+#info span {
+    float: right;
+    width: 10px;
+    height: 16px;
+    overflow: hidden;
+    background: url("../images/bg.png") no-repeat;    
+}
+
+#info .default, #info span {
+    background-position: -161px -20px;
+}
+
+#info .n0, #s_hour span, #s_minute span {
+    background-position: -56px -20px;
+}
+
+#info span.n1 {
+    background-position: -66px -20px;
+}
+
+#info .n2 {
+    background-position: -77px -20px;
+}
+
+#info .n3 {
+    background-position: -88px -20px;
+}
+
+#info .n4 {
+    background-position: -98px -20px;
+}
+
+#info .n5 {
+    background-position: -108px -20px;
+}
+
+#info .n6 {
+    background-position: -119px -20px;
+}
+
+#info .n7 {
+    background-position: -129px -20px;
+}
+
+#info .n8 {
+    background-position: -140px -20px;
+}
+
+#info .n9 {
+    background-position: -150px -20px;
+}
+
+#next {
     margin-top: 20px;
 }
 
-div#next canvas {
+#next canvas {
     margin-left: 2px;
 }
 
-div#status {
+#status {
     width: 100%;
     margin-top: 60%;
     position: absolute;
 }
 
-div#status span.sign {
+#status #s_psign {
     width: 14px;
     height: 13px;
     float: left;
@@ -87,18 +84,18 @@ div#status span.sign {
     margin-top: 2px;
 }
 
-span.unpaused {
+#info .unpaused {
     background-position: -76px -57px;
 }
 
-span.paused {
+#info .paused {
     background-position: -57px -57px;
 }
 
-span.tik {
+#info .tik {
     background-position: -173px -19px;
 }
 
-span.tok {
+#info .tok {
     background-position: -183px -19px;
 }
