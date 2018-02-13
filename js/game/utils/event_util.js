@@ -45,9 +45,9 @@ class EventUtil {
         const start = ism ? 'touchstart' : 'mousedown'
         const out = 'mouseout'
         const end = ism ? 'touchend' : 'mouseup'
-        this.addMouseHandler(buttons, start, BTN_DOWN_STATE, down)
-        this.addMouseHandler(buttons, end, BTN_UP_STATE, up)
-        this.addMouseHandler(buttons, out, BTN_UP_STATE, up)
+        this.addMouseHandler(buttons, 'mousedown', BTN_DOWN_STATE, down)
+        this.addMouseHandler(buttons, 'mouseup', BTN_UP_STATE, up)
+        this.addMouseHandler(buttons, 'mouseout', BTN_UP_STATE, up)
         // 当 user 没有在按钮里面结束鼠标事件时，如果是不会触发 mouseup 事件的
         // 只有用 mouseout 才能保证按键能正常结束，恢复原来的按键状况
     }
@@ -131,6 +131,7 @@ class EventUtil {
     mouseHandler(event, state, callback) {
         var e = this.getTarget(event),
             paused = this.game.isPaused()
+        log(e)
         for (var kc in this.keyBinds) {
             var bind = this.keyBinds[kc],
                 cpn = bind.component,

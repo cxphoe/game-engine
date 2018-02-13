@@ -65,4 +65,7 @@ var isMobile = function () {
 
 var nullFunc = function () {}
 
-var log = console.log.bind(console)
+var log = function (...args) {
+    const ta = document.querySelector('#log')
+    ta.value += '\n' + args.slice(0).join(' ')
+}
