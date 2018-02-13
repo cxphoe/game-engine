@@ -13,7 +13,7 @@ div#root {
 div#game {
     border: solid #000;
     border-width: 0 6px 6px;
-    margin: 40px 40px 0;
+    margin: 40px 40px 10px;
     padding: 25px 0;
     position: relative;
 }
