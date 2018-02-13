@@ -11,6 +11,10 @@
     line-height: 1.6;
 }
 
+.b_dire {
+    margin-top: -10px;
+}
+
 .b_text i:after, .b_text i:before {
     content: "";
     display: block;
@@ -79,12 +83,18 @@
 }
 
 #rotate {
-    top: 0px; 
+    top: 24px; 
     left: 270px;
 }
 
 #rotate em {
-    transform: translate(0px, 45px) scale(0.75, 1.5);
+    transform: translate(0px, 32px) scale(0.75, 1.5);
+}
+
+#rotate span {
+    margin-top: 10px;
+    margin-left: 30px;
+    position: absolute;
 }
 
 #down {
