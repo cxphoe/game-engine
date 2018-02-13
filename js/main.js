@@ -1,9 +1,11 @@
 window.onload = function() {
+    var root = document.querySelector('#root'),
+        page = getBrowserInterfaceSize(),
+        h = page.pageHeight
+    
+    root.style.height = `${h}px`
+    root.style.margin = `-${h/2}px 0 0 -200px`
     if (isMobile()) {
-        var root = document.querySelector('#root')
-        root.style.height = '700px'
-        root.style.margin = '-350px 0 0 -200px'
-        
         // 禁止双指缩放
         document.documentElement.addEventListener('touchstart', function (event) {
             if (event.touches.length > 1) {
