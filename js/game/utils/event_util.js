@@ -131,7 +131,6 @@ class EventUtil {
     mouseHandler(event, state, callback) {
         var e = this.getTarget(event),
             paused = this.game.isPaused()
-        log(e)
         for (var kc in this.keyBinds) {
             var bind = this.keyBinds[kc],
                 cpn = bind.component,
