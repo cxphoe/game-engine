@@ -140,7 +140,7 @@ class EventUtil {
             }
 
             cpn.className = state
-            if (!(paused && k !== this.pauseKeyCode) && ctrl) {
+            if (!(paused && kc !== this.pauseKeyCode) && ctrl) {
                 return callback(kc, ctrl)
             }
         }
