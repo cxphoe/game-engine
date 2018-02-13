@@ -4,6 +4,16 @@
     -webkit-box-sizing: border-box;
     margin: 0;
     padding: 0;
+
+    /* 阻止长按选中文本 */
+    -webkit-touch-callout: none;
+    
+    -webkit-user-select: none;
+    user-select: none;
+
+    /* 阻止点击出现阴影 */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
 }
 
 div {
