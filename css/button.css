@@ -1,5 +1,6 @@
 #button {
     position: relative;
+    margin-top: 0px;
 }
 
 .b_text {
@@ -35,19 +36,19 @@
 }
 
 .b_dire i {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
 }
 
 .b_space i {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
 }
 
 .b_control i {
-    width: 40px;
-    height: 40px;
-    margin-left: 4px;
+    width: 35px;
+    height: 35px;
+    margin: 8px 0 0 4px;
 }
 
 .b_bg1 i {
@@ -78,54 +79,54 @@
 }
 
 #rotate {
-    top: -5px; 
-    left: 255px;
+    top: 0px; 
+    left: 270px;
 }
 
 #rotate em {
-    transform: translate(0px, 50px) scale(0.75, 1.5);
+    transform: translate(0px, 45px) scale(0.75, 1.5);
 }
 
 #down {
-    top: 125px;
-    left: 255px;
+    top: 120px;
+    left: 270px;
 }
 
 #down em {
-    transform: translate(0px, -40px) rotate(180deg) scale(0.75, 1.5);
+    transform: translate(0px, -35px) rotate(180deg) scale(0.75, 1.5);
 }
 
 #left {
     top: 73px;
-    left: 200px;
+    left: 220px;
 }
 
 #left em {
-    transform: translate(35px, -8px) rotate(270deg) scale(0.75, 1.5);
+    transform: translate(30px, -8px) rotate(270deg) scale(0.75, 1.5);
 }
 
 #right {
     top: 73px;
-    left: 310px;
+    left: 320px;
 }
 
 #right em {
-    transform: translate(-35px, -8px) rotate(90deg) scale(0.75, 1.5);
+    transform: translate(-30px, -8px) rotate(90deg) scale(0.75, 1.5);
 }
 
 #drop {
     top: 70px;
-    left: 65px;
+    left: 77px;
 }
 
 #pause {
     top: 5px;
-    left: 55px;
+    left: 60px;
 }
 
 #reset {
     top: 5px;
-    left: 125px;
+    left: 130px;
 }
 
 i.pressed:after {

@@ -1,11 +1,12 @@
 window.onload = function() {
-    var root = document.querySelector('#root'),
+    if (isMobile()) {
+        var root = document.querySelector('#root'),
         page = getBrowserInterfaceSize(),
         h = page.pageHeight
     
-    root.style.height = `${h}px`
-    root.style.margin = `-${h/2}px 0 0 -200px`
-    if (isMobile()) {
+        root.style.height = `${h}px`
+        root.style.margin = `-${h/2}px 0 0 -200px`
+        root.style['font-size'] = '10px'
         // 禁止双指缩放
         document.documentElement.addEventListener('touchstart', function (event) {
             if (event.touches.length > 1) {
