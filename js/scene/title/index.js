@@ -25,7 +25,7 @@ class SceneTitle extends GameScene {
     init() {
         var game = this.game
 
-        game.field.draw()
+        game.area.draw()
     }
 
     startGame() {

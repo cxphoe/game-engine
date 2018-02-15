@@ -1,4 +1,4 @@
-class Field {
+class GameArea {
     constructor (game) {
         this.game = game
         this.board = []

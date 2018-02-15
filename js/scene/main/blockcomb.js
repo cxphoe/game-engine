@@ -46,8 +46,8 @@ class BlockComb {
             return
         }
         
-        var field = this.game.field
-        if (! collide(this.x+offset, this.y, this.coors, field)) {
+        var area = this.game.area
+        if (! collide(this.x+offset, this.y, this.coors, area)) {
             this.x += offset
         }
     }
@@ -66,15 +66,15 @@ class BlockComb {
         }
         // get rotated coordinates
         var newCoors = rotateCoors(this.coors)
-        var field = this.game.field
-        if (! collide(this.x, this.y, newCoors, field)) {
+        var area = this.game.area
+        if (! collide(this.x, this.y, newCoors, area)) {
             this.coors = newCoors
         }
     }
 
     drop() {
-        if (this.game.field.scoring) {
-            return  // field 在计分时不能 drop
+        if (this.game.area.scoring) {
+            return  // area 在计分时不能 drop
         }
         while (!this.retired) {
             this.updateY()
@@ -82,7 +82,7 @@ class BlockComb {
     }
 
     occupy() {
-        var board = this.game.field.board
+        var board = this.game.area.board
         for (var c of this.coors) {
             try {
                 var block = board[this.y + c[1]][this.x + c[0]]
@@ -100,11 +100,11 @@ class BlockComb {
     }
 
     isBlocked() {
-        var row, block, field = this.game.field
+        var row, block, area = this.game.area
         for (var c of this.coors) {
             try {
-                if (this.y + c[1] + 1 == field.row ||
-                    field.board[this.y + c[1] + 1][this.x + c[0]].occupied)
+                if (this.y + c[1] + 1 == area.row ||
+                    area.board[this.y + c[1] + 1][this.x + c[0]].occupied)
                         return true
             } catch (err) {
                 

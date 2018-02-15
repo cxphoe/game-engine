@@ -15,8 +15,8 @@ var rotateCoors = function (coors) {
     return newCoors.map(c => [c[0]-m[0], c[1]-m[1]])
 }
 
-var collide = function (x, y, coors, field) {
-    if (x < 0 || x + coors[3][0] >= field.column) {
+var collide = function (x, y, coors, area) {
+    if (x < 0 || x + coors[3][0] >= area.column) {
         return true
     }
 
@@ -24,7 +24,7 @@ var collide = function (x, y, coors, field) {
         // y + c[1] < 0 means the block is above the field
         // so literally it dosen't collides
         var coorY = y + c[1]
-        return !(coorY < 0 || !field.board[coorY][x + c[0]].occupied)
+        return !(coorY < 0 || !area.board[coorY][x + c[0]].occupied)
     }).reduce((prev, cond) => {
         return prev || cond
     })

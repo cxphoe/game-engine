@@ -6,11 +6,15 @@ class SceneMain extends GameScene {
     setup() {
         var that = this
         var game = this.game
+        var area = game.area
+
+        this.eachBlockScore = 10
 
         this.bc = BlockComb.instance(game)
-        this.pushElement(this.game.field)
+        this.pushElement(area)
         this.pushElement(this.bc)
-        game.field.setUpScoreRule(this)
+       
+        area.setUpScoreRule(this)
 
         // 按 '向左箭头' 左移
         game.registerAction(37, EventController.new({
@@ -120,23 +124,20 @@ class SceneMain extends GameScene {
     update() {
         var bc = this.bc
         var game = this.game
-        var field = game.field        
+        var area = game.area        
 
-        if (game.isPaused() || field.scoring) {
+        if (game.isPaused() || area.scoring) {
             return
         }
         
         if (bc.retired) {
-            if (bc.y <= 0) {
+            if (bc.y < 0) {
                 this.resetGame()
             } else {
                 bc.occupy()
-                field.update()
-                if (game.speedUp) {
-                    game.speedUp = false
-                }
+                this.addScore(this.eachBlockScore)                
+                area.update()
                 bc.init()
-                this.addScore(10)
             }
         } else {
             bc.update()

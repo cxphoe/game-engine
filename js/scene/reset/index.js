@@ -4,26 +4,26 @@ class SceneReset extends GameScene {
     }
 
     setup() {
-        this.pushElement(this.game.field)
+        this.pushElement(this.game.area)
     }
 
     init() {
         this.index = 19
-        this.update = this.fillField
+        this.update = this.fillArea
     }
 
-    fillField() {
-        var field = this.game.field
-        field.setLine(this.index, OCCUPIED_COLOR, false)
+    fillArea() {
+        var area = this.game.area
+        area.setLine(this.index, OCCUPIED_COLOR, false)
         if (--this.index < 0) {
             this.index = 0
-            this.update = this.clearField
+            this.update = this.clearArea
         }
     }
     
-    clearField() {
-        var field = this.game.field
-        field.setLine(this.index, DEFAULT_COLOR, false)
+    clearArea() {
+        var area = this.game.area
+        area.setLine(this.index, DEFAULT_COLOR, false)
         if (++this.index == 20) {
             this.restartGame()
         }

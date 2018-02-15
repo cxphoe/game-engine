@@ -1,6 +1,6 @@
 class Game extends DrawingBoard {
     constructor(callback) {
-        super('#field')
+        super('#area')
         this.blockSize = this.canvas.width / 10        
         this.process = null
         this.callbackRun = callback
@@ -17,7 +17,6 @@ class Game extends DrawingBoard {
     }
 
     init() {
-        this.speedUp = false
         this.scoreBoard.setTitle('Point')
         this.scoreBoard.setNumber(0)
         
@@ -32,8 +31,8 @@ class Game extends DrawingBoard {
         this.clearCountBoard = GameBoard.new('#cleans span', '#cleans p')
         this.pauseSign = PauseSign.new()
 
-        this.field = Field.instance(this)
-        this.field.init()
+        this.area = GameArea.instance(this)
+        this.area.init()
     }
 
     setupEvent() {
