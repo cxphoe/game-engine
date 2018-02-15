@@ -36,11 +36,11 @@ class Game extends DrawingBoard {
     }
 
     setupEvent() {
-        this.eventUtil = EventUtil.instance(this)
+        this.eventCtrler = EventController.instance(this)
     }
 
     setPauseKeyCode(keyCode) {
-        this.eventUtil.setPauseKeyCode(keyCode)
+        this.eventCtrler.setPauseKeyCode(keyCode)
     }
 
     isPaused() {
@@ -56,11 +56,11 @@ class Game extends DrawingBoard {
     }
 
     registerAction(keyCode, controller) {
-        this.eventUtil.registerController(keyCode, controller)
+        this.eventCtrler.registerController(keyCode, controller)
     }
 
     removeAllActions() {
-        this.eventUtil.removeAllCallbacks()
+        this.eventCtrler.removeAllCallbacks()
     }
 
     replaceScene(Scene, name) {
@@ -71,7 +71,7 @@ class Game extends DrawingBoard {
         // Scene.new will:
         //      1st: create a singular instance at the first time or
         //      2nd: just initialize the instance
-        this.eventUtil.init()
+        this.eventCtrler.init()
     }
 
     drawBlock(x, y, color) {

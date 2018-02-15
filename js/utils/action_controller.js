@@ -1,6 +1,6 @@
 var events = {}
 
-class EventController {
+class ActionController {
     constructor(options) {
         this.key = options.key
         this.callback = options.callback

@@ -17,7 +17,7 @@ class SceneMain extends GameScene {
         area.setUpScoreRule(this)
 
         // 按 '向左箭头' 左移
-        game.registerAction(37, EventController.new({
+        game.registerAction(37, ActionController.new({
             key: 'left',
             begin: 200,
             interval: 100,
@@ -27,7 +27,7 @@ class SceneMain extends GameScene {
         }))
 
         // 按 '向右箭头' 右移
-        game.registerAction(39, EventController.new({
+        game.registerAction(39, ActionController.new({
             key: 'right',
             begin: 200,
             interval: 100,
@@ -37,7 +37,7 @@ class SceneMain extends GameScene {
         }))
         
         // 按 '向下箭头' 加速
-        game.registerAction(40, EventController.new({
+        game.registerAction(40, ActionController.new({
             key: 'down',
             callback: (clear) => {
                 that.bc.retired ? clear() : that.bc.updateCD = -10
@@ -45,7 +45,7 @@ class SceneMain extends GameScene {
         }))
         
         // 按 '向上箭头' 旋转
-        game.registerAction(38, EventController.new({
+        game.registerAction(38, ActionController.new({
             key: 'up',
             once: true,
             callback: (clear) => {
@@ -54,7 +54,7 @@ class SceneMain extends GameScene {
         }))
 
         // 按 '空格' 降落
-        game.registerAction(32, EventController.new({
+        game.registerAction(32, ActionController.new({
             key: 'space',
             once: true,
             callback: (clear) => {
@@ -63,7 +63,7 @@ class SceneMain extends GameScene {
         }))
 
         // 按 'R' 重置
-        game.registerAction(82, EventController.new({
+        game.registerAction(82, ActionController.new({
             key: 'r',
             once: true,
             callback: (clear) => {
@@ -73,7 +73,7 @@ class SceneMain extends GameScene {
 
         // 设置 'P' 成为game的 pause key
         var pauseKeyCode = 80
-        game.registerAction(pauseKeyCode, EventController.new({
+        game.registerAction(pauseKeyCode, ActionController.new({
             key: 'p',
             once: true,
             callback: (clear) => {

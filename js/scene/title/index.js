@@ -13,7 +13,7 @@ class SceneTitle extends GameScene {
         var that = this
 
         // 按 空格 开始游戏
-        game.registerAction(32, EventController.new({
+        game.registerAction(32, ActionController.new({
             key: 'space',
             once: true,
             callback: (clear) => {
