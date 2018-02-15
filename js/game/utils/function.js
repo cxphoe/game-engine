@@ -1,20 +1,3 @@
-
-var randBlockType = function () {
-    var bt = BLOCKTYPE
-    return bt[Math.floor(Math.random() * bt.length)]
-}
-
-var rotateCoors = function (coors) {
-    // rotate coordinates
-    var newCoors = coors.map(c => [-c[1], c[0]])
-    // find the smallest one
-    var m = newCoors.sort(function (c1, c2) {
-        return c1[0] == c2[0] ? c1[1] - c2[1] : c1[0] - c2[0]
-    })[0]
-    // ensure the first one coor with 0 as x coordinate
-    return newCoors.map(c => [c[0]-m[0], c[1]-m[1]])
-}
-
 var collide = function (x, y, coors, area) {
     if (x < 0 || x + coors[3][0] >= area.column) {
         return true

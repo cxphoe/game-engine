@@ -65,11 +65,22 @@ class BlockComb {
             return
         }
         // get rotated coordinates
-        var newCoors = rotateCoors(this.coors)
+        var newCoors = this.rotateCoors(this.coors)
         var area = this.game.area
         if (! collide(this.x, this.y, newCoors, area)) {
             this.coors = newCoors
         }
+    }
+
+    rotateCoors(coors) {
+        // rotate coordinates
+        var newCoors = coors.map(c => [-c[1], c[0]])
+        // find the smallest one
+        var m = newCoors.sort(function (c1, c2) {
+            return c1[0] == c2[0] ? c1[1] - c2[1] : c1[0] - c2[0]
+        })[0]
+        // ensure the first one coor with 0 as x coordinate
+        return newCoors.map(c => [c[0]-m[0], c[1]-m[1]])
     }
 
     drop() {

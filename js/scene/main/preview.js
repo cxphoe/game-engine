@@ -8,7 +8,7 @@ class Preview extends DrawingBoard {
 
     // 更新 coors 供下一次 blockComb 重置使用
     next() {
-        this.coors = randBlockType()
+        this.coors = this.randBlockType()
         var diffX = coorDiff(this.coors, 0)
         this.offsetX = diffX == 1 ? 1 : diffX == 2 ? 0.5 : 0
         this.offsetY = coorDiff(this.coors, 1) == 0 ? 0.5 : 0
@@ -20,6 +20,11 @@ class Preview extends DrawingBoard {
 
     drawBlock(x, y) {
         super.drawBlock(x, y, this.game.blockSize, this.color)
+    }
+
+    randBlockType() {
+        var bt = BLOCKTYPE
+        return bt[Math.floor(Math.random() * bt.length)]    
     }
 
     draw() {
