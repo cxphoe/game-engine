@@ -1,11 +1,13 @@
 div#root {
-    width: 400px;
-    height: 640px;
-    background: #ebcb3c;
-    border-radius: 20px;
-    margin: -320px 0 0 -200px;
+    width: 440px;
+    height: 100%;
+
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
+    
+    background: #ebcb3c;
+    border-radius: 2em;
     position: absolute;
     box-shadow: inset 0 0 10px #fff;
 }
@@ -13,13 +15,20 @@ div#root {
 div#game {
     border: solid #000;
     border-width: 0 6px 6px;
-    margin: 25px 40px 0px;
-    padding: 25px 0;
+    margin: 30px 50px;
+    width: 340px;
+    padding: 30px 0 20px;
     position: relative;
 }
 
+@media screen and (max-width: 440px) {
+    div#root {
+        width: 100%;
+    }
+}
+
 div#container {
-    width: 260px;
+    width: 86%;
     border: 5px solid;
     border-color: #987f0f #fae36c #fae36c #987f0f;
     margin: 0 auto;
@@ -34,6 +43,7 @@ div#border {
 
 div#main canvas {
     border: 2px solid #000;
+    width: 65%;
 }
 
 div#head , #head h1 {
@@ -44,7 +54,7 @@ div#head , #head h1 {
 }
 
 span[class^=end] {
-    width: 40px;
+    width: 15%;
     height: 6px;
     background: #000;
 }
@@ -76,18 +86,17 @@ div#head span.dot2 {
 }
 
 #title {
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: 500;
     position: absolute;
-    top: 60%;
-    right: 50%;
-    margin: -50% 0 0 -50%;
+    top: 20%;
+    left: 18%;
     visibility: hidden;
 }
 
 #head h1 {
-    font-size: 22px;
+    font-size: 1.4em;
     font-weight: 400;
     text-align: center;
-    top: -12px;
+    top: -0.6em;
 }

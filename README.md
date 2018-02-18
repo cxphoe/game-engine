@@ -14,10 +14,10 @@ Tetris 俄罗斯方块
 - 数据保存： 用localStorage对象保存游戏记录
 - 游戏按键模拟
 - 平滑的移动：通过 EventUtil 以及 EventController 限制了原生 keydown 的触发频率
+- 移动端目前只测试通过iphone6
+- 响应式
 
 ## ToDo
 
 1. level 功能
 2. 音效
-3. 响应式
-4. 支持手机游玩
