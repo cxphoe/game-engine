@@ -7,13 +7,13 @@
 
 #info p {
     font-size: 0.9em;
-    line-height: 3.5em;
+    line-height: 50px;
 }
 
 #info span {
     float: right;
-    width: 0.625em;
-    height: 1em;
+    width: 10px;
+    height: 16px;
     overflow: hidden;
     background: url("../images/bg.png") no-repeat;    
 }

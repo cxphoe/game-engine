@@ -3,6 +3,7 @@ window.onload = function() {
         var root = document.querySelector('#root'),
             o = { passive: false }
     
+        document.body.style.fontSize = '12px'
         // 禁止双指缩放 以及 阻止长按出现菜单
         document.documentElement.addEventListener('touchstart', (event) => {
             event.preventDefault();
