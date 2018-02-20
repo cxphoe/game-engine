@@ -59,13 +59,14 @@ class GameInterface {
                 this.curW = nextW
 
                 leftOffset = 220 * negSize
-                g.style.transform = b.style.transform = scale
+                g.style.transform = `scale(${size})`
+                b.style.transform = `scale(${size})`
                 g.style.marginLeft = leftOffset + 50 + 'px'
                 b.style.marginLeft = leftOffset + 'px'
             }
 
             g.style.marginTop = 200 * negSize + 30 * size + 'px'
-            b.style.marginTop = 240 * negSize + 'px'
+            b.style.marginTop = 225 * negSize + 'px'
 
             this.process = null            
             this.curH = h

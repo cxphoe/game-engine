@@ -15,16 +15,10 @@ div#root {
 div#game {
     border: solid #000;
     border-width: 0 6px 6px;
-    margin: 30px 50px;
+    margin: 30px 50px 15px;
     width: 340px;
     padding: 30px 0 20px;
     position: relative;
-}
-
-@media screen and (max-width: 440px) {
-    div#root {
-        width: 100%;
-    }
 }
 
 div#container {
