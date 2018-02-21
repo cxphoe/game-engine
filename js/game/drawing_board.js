@@ -23,9 +23,9 @@ class DrawingBoard {
         ctx.fillRect(offsetX, offsetY, length, length)
         
         // 请空间隔
-        offsetX += 1
-        offsetY += 1
-        length -= 2
+        offsetX += gap
+        offsetY += gap
+        length -= 2 * gap
         ctx.clearRect(offsetX, offsetY, length, length)
 
         // 画正中间方块
