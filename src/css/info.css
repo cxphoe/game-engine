@@ -1,0 +1,100 @@
+#info {
+    width: 28%;
+    position: absolute;
+    right: 3%;
+    top: 0;
+}
+
+#info p {
+    font-size: 0.9em;
+    line-height: 50px;
+}
+
+#info span {
+    float: right;
+    width: 10px;
+    height: 16px;
+    overflow: hidden;
+    background: url("../image/bg.png") no-repeat;    
+}
+
+#info .default, #info span {
+    background-position: -161px -20px;
+}
+
+#info .n0, #s_hour span, #s_minute span {
+    background-position: -56px -20px;
+}
+
+#info .n1 {
+    background-position: -66px -20px;
+}
+
+#info .n2 {
+    background-position: -77px -20px;
+}
+
+#info .n3 {
+    background-position: -88px -20px;
+}
+
+#info .n4 {
+    background-position: -98px -20px;
+}
+
+#info .n5 {
+    background-position: -108px -20px;
+}
+
+#info .n6 {
+    background-position: -119px -20px;
+}
+
+#info .n7 {
+    background-position: -129px -20px;
+}
+
+#info .n8 {
+    background-position: -140px -20px;
+}
+
+#info .n9 {
+    background-position: -150px -20px;
+}
+
+#next {
+    margin-top: 1.5em;
+}
+
+#next canvas {
+    margin-left: 0.125em;
+}
+
+#status {
+    width: 100%;
+    margin-top: 40%;
+}
+
+#status #s_psign {
+    width: 14px;
+    height: 13px;
+    float: left;
+    margin-right: 0px;
+    margin-top: 2px;
+}
+
+#info .unpaused {
+    background-position: -76px -57px;
+}
+
+#info .paused {
+    background-position: -57px -57px;
+}
+
+#info .tik {
+    background-position: -173px -19px;
+}
+
+#info .tok {
+    background-position: -183px -19px;
+}
