@@ -33,9 +33,3 @@ body {
     direction: ltr;
     text-align: left;
 }
-
-@media screen and (max-height: 600px) {
-    body {
-        font-size: 12px;
-    }
-}
