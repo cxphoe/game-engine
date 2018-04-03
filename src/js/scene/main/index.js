@@ -2,7 +2,7 @@ import GameScene from '../../game/game_scene'
 import BlockComb from './blockcomb'
 import SceneReset from '../reset/index'
 import ActionController from '../../utils/action_controller'
-import { keySettings, scoringRules } from '../../const'
+import { keySettings, clearPoints } from '../../const'
 
 export default class SceneMain extends GameScene {
     constructor (game) {
@@ -116,7 +116,7 @@ export default class SceneMain extends GameScene {
             let cprev = ccb.getNumber()
             ccb.setNumber(rows + cprev)
 
-            this.addScore(scoringRules[rows])
+            this.addScore(clearPoints[rows - 1])
         }
     }
 

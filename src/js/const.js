@@ -10,12 +10,7 @@ const blockType = [
 ]
 
 // 计分规则：消除行数与相应的分数
-const scoringRules = {
-    1: 100,
-    2: 300,
-    3: 700,
-    4: 1500,
-}
+const clearPoints = [100, 300, 500, 800]
 
 // 按键设置：
 //     keyCode 为按键相应的键码
@@ -69,7 +64,7 @@ const indicateColor = 'rgb(180, 0, 0)'       // 高亮显示方块时的颜色
 
 export {
     blockType,
-    scoringRules,
+    clearPoints,
     keySettings,
     btnDownState,
     btnUpState,
