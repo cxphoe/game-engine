@@ -1,6 +1,9 @@
 // 用于判断坐标组合组合是否会与游戏区域冲突
 var collide = function (x, y, coors, area) {
-    if (x < 0 || x + coors[3][0] >= area.column) {
+    // x 为方块组合的 x 轴的基准坐标
+    // y 为方块组合的 y 轴的基准坐标
+    // 坐标数组是已经以 x 坐标也就是 coors[0] 为优先排序过了
+    if (x + coors[0][0] < 0 || x + coors[3][0] >= area.column) {
         return true
     }
 
@@ -20,11 +23,13 @@ var coorDiff = function (coors, index) {
         return c[index]
     })
 
-    return array.reduce((max, num) => {
-        return Math.max(max, num)
-    }) - array.reduce((min, num) => {
-        return Math.min(min, num)
-    })
+    return Math.max(...array) - Math.min(...array)
+}
+
+var coorCompare = function (coor1, coor2) {
+    return coor1[0] == coor2[0]
+        ? coor1[1] - coor2[1]
+        : coor1[0] - coor2[0]
 }
 
 // 判断是否为移动端
@@ -41,5 +46,6 @@ var isMobile = function () {
 export {
     collide,
     coorDiff,
+    coorCompare,
     isMobile,
 }

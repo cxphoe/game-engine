@@ -53,7 +53,7 @@ export default class GameArea {
         }
     }
 
-    // 设置用于在清除满行的执行的计分函数
+    // 设置用于在清除满行的执行的对清除行数计分函数
     setUpScoreRule(func) {
         this.scoreFunc = function(rows) {
             func && func(rows)

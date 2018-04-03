@@ -1,5 +1,5 @@
 import Preview from './preview'
-import { collide, coorDiff } from '../../utils/function'
+import { collide, coorDiff, coorCompare } from '../../utils/function'
 import { occupiedColor, indicateColor } from '../../const'
 
 // 方块组合
@@ -75,20 +75,45 @@ export default class BlockComb {
         // get rotated coordinates
         let newCoors = this.rotateCoors(this.coors)
         let area = this.game.area
-        if (! collide(this.x, this.y, newCoors, area)) {
-            this.coors = newCoors
+
+        let xDiff = coorDiff(newCoors, 0)
+        let offsets = this.getOptionalOffsets(xDiff)
+        for (let offset of offsets) {
+            if (! collide(this.x + offset, this.y, newCoors, area)) {
+                this.coors = newCoors
+                this.x += offset
+                return
+            }
         }
     }
 
     rotateCoors(coors) {
-        // rotate coordinates
+        // 旋转坐标
         let newCoors = coors.map(c => [-c[1], c[0]])
-        // find the smallest one
+        // 对得到的新坐标排序，并且得到 x 坐标最小的坐标
         let m = newCoors.sort(function (c1, c2) {
-            return c1[0] == c2[0] ? c1[1] - c2[1] : c1[0] - c2[0]
+            return c1[0] === c2[0] ? c1[1] - c2[1] : c1[0] - c2[0]
         })[0]
+
         // ensure the first one coor with 0 as x coordinate
-        return newCoors.map(c => [c[0]-m[0], c[1]-m[1]])
+        // 确保第一个坐标的 x 坐标为0；长蛇状除外
+        let offsetX = m[0]
+        let offsetY = m[1]
+        let xDiff = coorDiff(coors, 0)
+        // 判断是否为长蛇状且旋转前处于横放的状态
+        if (xDiff === 3) {
+            offsetX -= 1
+            offsetY += 1
+        }
+        return newCoors.map(c => [c[0] - offsetX, c[1] - offsetY])
+    }
+
+    getOptionalOffsets(n) {
+        let offsets = [0]
+        for (let offset = 1; offset <= n; offset++) {
+            offsets.push(offset, -offset)
+        }
+        return offsets
     }
 
     // 方块组合直接降落到底部
@@ -122,10 +147,10 @@ export default class BlockComb {
 
     // 判断方块组合是否被挡住
     isBlocked() {
-        let row, block, area = this.game.area
+        let area = this.game.area
         for (let c of this.coors) {
             try {
-                if (this.y + c[1] + 1 == area.row ||
+                if (this.y + c[1] + 1 === area.row ||
                     area.board[this.y + c[1] + 1][this.x + c[0]].occupied)
                     return true
             } catch (err) {

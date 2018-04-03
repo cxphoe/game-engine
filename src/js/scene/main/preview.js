@@ -4,6 +4,9 @@ import { occupiedColor } from '../../const'
 import { coorDiff } from '../../utils/function'
 
 // preview for next blockcomb 方块组合的预览
+// 每次在主要界面需要一个新的方块组合时，就将目前缓存的方块组
+// 合提供给主界面，之后再更新方块组合；
+// 方块组合为一个数组，包含四个表示的坐标的数组
 export default class Preview extends DrawingBoard {
     constructor(game) {
         super('#next canvas')

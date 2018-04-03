@@ -107,7 +107,8 @@ export default class SceneMain extends GameScene {
             let cprev = ccb.getNumber()
             ccb.setNumber(rows + cprev)
             
-            for (let n = 0; rows > 0; rows--) {
+            let n = 0
+            for (; rows > 0; rows--) {
                 n += rows
             }
 
