@@ -33,8 +33,8 @@ export default class Game extends DrawingBoard {
     }
 
     getComponents() {
-        this.clock = Clock.new()
-        this.storage = ScoreStorage.new()
+        this.clock = Clock.instance()
+        this.storage = ScoreStorage.instance()
         
         // 分数板
         this.scoreBoard = GameBoard.new('#point span', '#point p')
@@ -43,7 +43,7 @@ export default class Game extends DrawingBoard {
         // 记录当前级别的面板
         this.levelBoard = GameBoard.new('#level span')
         // 暂停标志
-        this.pauseSign = PauseSign.new()
+        this.pauseSign = PauseSign.instance()
 
         this.area = GameArea.instance(this)
         this.area.init()
@@ -115,7 +115,7 @@ export default class Game extends DrawingBoard {
         // cancel the registered functions
         // this.removeAllActions()
         this.sceneName = name
-        this.scene = Scene.new(this)
+        this.scene = Scene.instance(this)
         // Scene.new will:
         //      1st: create a singular instance at the first time or
         //      2nd: just initialize the instance

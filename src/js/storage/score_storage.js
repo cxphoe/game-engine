@@ -9,8 +9,9 @@ export default class ScoreStorage {
         this.storage = this.getLocalStorage()
     }
 
-    static new() {
-        return new this()
+    static instance(...args) {
+        this.i = this.i || new this(...args)
+        return this.i
     }
 
     getLocalStorage() {

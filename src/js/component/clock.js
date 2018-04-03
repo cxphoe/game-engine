@@ -9,8 +9,9 @@ export default class Clock {
         this.setup()
     }
 
-    static new(...args) {
-        return new this(...args)
+    static instance(...args) {
+        this.i = this.i || new this(...args)
+        return this.i
     }
 
     // 初始化两个板子分别表示小时以及分钟，一个“滴答”的显示器

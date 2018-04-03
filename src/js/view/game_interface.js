@@ -10,8 +10,9 @@ export default class GameInterface {
         this.process = null
     }
 
-    static new(...args) {
-        return new this(...args)
+    static instance(...args) {
+        this.i = this.i || new this(...args)
+        return this.i
     }
 
     getBrowserInterfaceSize() {

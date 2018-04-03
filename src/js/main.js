@@ -31,7 +31,7 @@ window.onload = function() {
     }
 
     // 调整界面
-    var gi = GameInterface.new()
+    var gi = GameInterface.instance()
     gi.resize()
     window.onresize = () => {
         gi.resize()

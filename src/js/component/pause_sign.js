@@ -10,6 +10,11 @@ export default class PauseSign extends GameIndicator {
         this.count = 0
     }
 
+    static instance(...args) {
+        this.i = this.i || new this(...args)
+        return this.i
+    }
+
     pause() {
         this.paused = true
         // 暂停指示器闪烁
