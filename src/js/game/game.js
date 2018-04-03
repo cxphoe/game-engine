@@ -1,14 +1,14 @@
 import DrawingBoard from './drawing_board'
-import EventController from './event_controller'
+import EventController from '../controller/event_controller'
 
-import Clock from './component/clock'
-import PauseSign from './component/pause_sign'
-import ScoreStorage from './storage/score'
+import Clock from '../component/clock'
+import PauseSign from '../component/pause_sign'
+import ScoreStorage from '../storage/score_storage'
 
 import GameBoard from './game_board'
 import GameArea from './game_area'
 
-import SceneReset from '../scene/reset/index'
+import SceneReset from '../scene/reset'
 
 // 游戏主体
 export default class Game extends DrawingBoard {

@@ -1,6 +1,6 @@
 import GameScene from '../../game/game_scene'
-import SceneMain from '../main/index'
-import ActionController from '../../utils/action_controller'
+import SceneMain from '../main'
+import ActionController from '../../controller/action_controller'
 import { speeds, maxStartLines, keySettings } from '../../const'
 
 export default class SceneTitle extends GameScene {

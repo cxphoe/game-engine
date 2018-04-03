@@ -1,5 +1,5 @@
 import GameScene from '../../game/game_scene'
-import SceneTitle from '../title/index'
+import SceneTitle from '../title'
 import { occupiedColor, defaultColor } from '../../const'
 
 export default class SceneReset extends GameScene {

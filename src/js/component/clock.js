@@ -1,6 +1,6 @@
-import GameIndicator from '../game_indicator'
-import GameBoard from '../game_board'
-import { tikState, tokState } from '../../const'
+import GameIndicator from '../game/game_indicator'
+import GameBoard from '../game/game_board'
+import { tikState, tokState } from '../const'
 
 // 用于表示游戏界面的时钟
 export default class Clock {

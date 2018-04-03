@@ -2,8 +2,6 @@ import EventUtil from '../utils/event_util'
 import { keySettings, btnDownState, btnUpState } from '../const'
 import { isMobile } from '../utils/function'
 
-let log = console.log.bind()
-
 export default class EventController extends EventUtil {
     constructor(game) {
         super()
@@ -105,7 +103,6 @@ export default class EventController extends EventUtil {
 
     // 对 keybinds 里的对象添加键盘事件
     addKBHandler(element, type, state, callback) {
-        log('add', type, 'handler of btns to', element.toString())
         let game = this.game
         this.addHandler(element, type, (event) => {
             this.keyboardHandler(event, state, callback)
@@ -133,7 +130,6 @@ export default class EventController extends EventUtil {
 
     // 对 keybinds 里的对象添加鼠标事件
     addMouseHandler(element, type, state, callback) {
-        log('add', type, 'handler of btns to btns')
         this.addHandler(window, type, (event) => {
             this.mouseHandler(event, state, callback)
         })

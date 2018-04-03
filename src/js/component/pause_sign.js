@@ -1,5 +1,5 @@
-import GameIndicator from '../game_indicator'
-import { pauseState, unpauseState } from '../../const'
+import GameIndicator from '../game/game_indicator'
+import { pauseState, unpauseState } from '../const'
 
 export default class PauseSign extends GameIndicator {
     // 用来管理 暂停功能 以及 在游戏界面中的暂停标志

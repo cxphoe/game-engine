@@ -1,7 +1,7 @@
 import GameScene from '../../game/game_scene'
 import BlockComb from './blockcomb'
 import SceneReset from '../reset/index'
-import ActionController from '../../utils/action_controller'
+import ActionController from '../../controller/action_controller'
 import {
     linesForEachLevel,
     blockScoreIncrement,
