@@ -2,20 +2,25 @@ import GameScene from '../../game/game_scene'
 import BlockComb from './blockcomb'
 import SceneReset from '../reset/index'
 import ActionController from '../../utils/action_controller'
-import { keySettings, clearPoints } from '../../const'
+import {
+    linesForEachLevel,
+    blockScoreIncrement,
+    keySettings,
+    clearPoints,
+} from '../../const'
 
 export default class SceneMain extends GameScene {
     constructor (game) {
         super(game)
+        // 每组方块到达底部时得到的分数
+        this.eachBlockScore = 10
+        this.clearLines = 0
     }
 
     setup() {
         let that = this
         let game = this.game
         let area = game.area
-
-        // 每组方块到达底部时得到的分数
-        this.eachBlockScore = 10
 
         this.bc = BlockComb.instance(game)
         this.pushElement(area)
@@ -100,8 +105,24 @@ export default class SceneMain extends GameScene {
     }
 
     init() {
+        let game = this.game
+
+        let startLevel = game.levelBoard.getNumber()
+        this.bc.setLevel(startLevel)
         // 每次进入场景都行初始化 blockcomb
         this.bc.init()
+
+        let clb = game.lineCountBoard
+        clb.setTitle('Cleans')
+        clb.setNumber(0)
+
+        let sb = game.scoreBoard
+        sb.setTitle('Points')
+        sb.setNumber(0)
+
+        // 初始号计分的有关信息
+        this.eachBlockScore = 10
+        this.clearLines = 0
     }
 
     addScore(score) {
@@ -112,11 +133,19 @@ export default class SceneMain extends GameScene {
 
     countScore(rows) {
         if (rows > 0) {
-            let ccb = this.game.clearCountBoard
-            let cprev = ccb.getNumber()
-            ccb.setNumber(rows + cprev)
+            let lcb = this.game.lineCountBoard
+            let cprev = lcb.getNumber()
+            let lineAmount = rows + cprev
+            lcb.setNumber(lineAmount)
 
             this.addScore(clearPoints[rows - 1])
+
+            this.clearLines += rows
+            if (this.clearLines >= linesForEachLevel) {
+                this.clearLines -= linesForEachLevel
+                this.bc.updateLevel()
+                this.eachBlockScore += blockScoreIncrement
+            }
         }
     }
 

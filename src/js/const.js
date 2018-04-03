@@ -12,6 +12,14 @@ const blockType = [
 // 计分规则：消除行数与相应的分数
 const clearPoints = [100, 300, 500, 800]
 
+const speeds = [800, 650, 500, 400, 300, 200]
+
+const delays = [50, 60, 70, 80, 90, 100]
+
+const linesForEachLevel = 20
+
+const blockScoreIncrement = 2
+
 // 按键设置：
 //     keyCode 为按键相应的键码
 //     sel 为按键在 HTML 中的 id ，用于做选择器
@@ -65,6 +73,10 @@ const indicateColor = 'rgb(180, 0, 0)'       // 高亮显示方块时的颜色
 export {
     blockType,
     clearPoints,
+    speeds,
+    delays,
+    linesForEachLevel,
+    blockScoreIncrement,
     keySettings,
     btnDownState,
     btnUpState,

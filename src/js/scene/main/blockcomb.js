@@ -1,11 +1,12 @@
 import Preview from './preview'
 import { collide, coorDiff, coorCompare } from '../../utils/function'
-import { occupiedColor, indicateColor } from '../../const'
+import { speeds, delays, occupiedColor, indicateColor } from '../../const'
 
 // 方块组合
 export default class BlockComb {
     constructor (game) {
         this.game = game
+        this.maxLevel = speeds.length
         this.default()
         this.setup()
     }
@@ -24,7 +25,6 @@ export default class BlockComb {
         // indicateColor 用于方块在到达底部的时候高亮显示的颜色
         this.indicateColor = indicateColor
         // blockcomb 下降的CD
-        this.maxUpdateCD = Math.floor(this.game.fps / 1.5)
     }
 
     setup() {
@@ -49,6 +49,25 @@ export default class BlockComb {
         this.updateCD = this.maxUpdateCD
         this.retired = false    // retired 为真时重置 blockcomb
     }
+    
+    setLevel(level) {
+        this.level = level
+        let fps = this.game.fps
+        let speed = speeds[this.level - 1]
+        this.maxUpdateCD = Math.floor(fps * speed / 1000)
+        this.updateCD = this.maxUpdateCD
+        let delay = delays[this.level - 1]
+        this.delay = Math.floor(fps * delay / 1000)
+    }
+
+    updateLevel() {
+        if (this.level < this.maxLevel) {
+            let next = this.level + 1
+            this.setLevel(next)
+            let lb = this.game.levelBoard
+            lb.setNumber(next)
+        }
+    }
 
     move(offset) {
         // 方块退休时，不能移动
@@ -59,6 +78,13 @@ export default class BlockComb {
         let area = this.game.area
         if (! collide(this.x+offset, this.y, this.coors, area)) {
             this.x += offset
+            this.updateCD += this.delay
+        } else {
+            this.updateCD += Math.round(this.delay / 2)
+        }
+
+        if (this.updateCD > this.maxUpdateCD) {
+            this.updateCD = this.maxUpdateCD
         }
     }
 

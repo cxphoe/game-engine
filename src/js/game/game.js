@@ -23,31 +23,25 @@ export default class Game extends DrawingBoard {
         this.callbackRun = callback
 
         this.default()
-        this.getComponent()
-        this.init()
-        this.setupEvent()
+        this.getComponents()
+        this.setupEventController()
         this.__start()
     }
     
     default() {
-        this.fps = 30
+        this.fps = 45
     }
 
-    init() {
-        this.scoreBoard.setTitle('Point')
-        this.scoreBoard.setNumber(0)
-        
-        this.clearCountBoard.setNumber(0)
-    }
-
-    getComponent() {
+    getComponents() {
         this.clock = Clock.new()
         this.storage = ScoreStorage.new()
         
         // 分数板
         this.scoreBoard = GameBoard.new('#point span', '#point p')
         // 记录清除行数的面板
-        this.clearCountBoard = GameBoard.new('#cleans span', '#cleans p')
+        this.lineCountBoard = GameBoard.new('#lines span', '#lines p')
+        // 记录当前级别的面板
+        this.levelBoard = GameBoard.new('#level span')
         // 暂停标志
         this.pauseSign = PauseSign.new()
 
@@ -55,7 +49,7 @@ export default class Game extends DrawingBoard {
         this.area.init()
     }
 
-    setupEvent() {
+    setupEventController() {
         this.eventCtrler = EventController.instance(this)
     }
 
