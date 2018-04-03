@@ -17,6 +17,9 @@ export default class BlockComb {
     }
 
     default() {
+        // 整个方块组合的基准坐标
+        this.x = 0
+        this.y = 0
         this.defaultColor = occupiedColor
         // indicateColor 用于方块在到达底部的时候高亮显示的颜色
         this.indicateColor = indicateColor
@@ -40,7 +43,6 @@ export default class BlockComb {
         p.draw()
 
         // x and y indicate block combination's place in board
-        this.x = 3
         this.y = -coorDiff(this.coors, 1) - 1
         this.color = this.defaultColor
         this.updateCD = this.maxUpdateCD
@@ -76,6 +78,8 @@ export default class BlockComb {
         let newCoors = this.rotateCoors(this.coors)
         let area = this.game.area
 
+        // 得到所有可能的水平位移距离，通过让方块组合在贴墙时吗，改变其水平
+        // 基准坐标，使得能够贴墙旋转
         let xDiff = coorDiff(newCoors, 0)
         let offsets = this.getOptionalOffsets(xDiff)
         for (let offset of offsets) {

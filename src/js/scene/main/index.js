@@ -2,6 +2,7 @@ import GameScene from '../../game/game_scene'
 import BlockComb from './blockcomb'
 import SceneReset from '../reset/index'
 import ActionController from '../../utils/action_controller'
+import { scoringRules } from '../../const'
 
 export default class SceneMain extends GameScene {
     constructor (game) {
@@ -20,6 +21,7 @@ export default class SceneMain extends GameScene {
         this.pushElement(area)
         this.pushElement(this.bc)
        
+        // 设置 area 的计分规则
         area.setUpScoreRule(rows => {
             this.countScore(rows)
         })
@@ -92,6 +94,7 @@ export default class SceneMain extends GameScene {
     }
 
     init() {
+        // 每次进入场景都行初始化 blockcomb
         this.bc.init()
     }
 
@@ -106,13 +109,8 @@ export default class SceneMain extends GameScene {
             let ccb = this.game.clearCountBoard
             let cprev = ccb.getNumber()
             ccb.setNumber(rows + cprev)
-            
-            let n = 0
-            for (; rows > 0; rows--) {
-                n += rows
-            }
 
-            this.addScore(n * 100)
+            this.addScore(scoringRules[rows])
         }
     }
 

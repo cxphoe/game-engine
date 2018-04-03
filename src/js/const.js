@@ -9,6 +9,14 @@ const blockType = [
                     [[0, 1], [1, 0], [1, 1], [2, 0]],
 ]
 
+// 计分规则：消除行数与相应的分数
+const scoringRules = {
+    1: 100,
+    2: 300,
+    3: 700,
+    4: 1500,
+}
+
 // button_bindings : contains [keyCode, sel] pairs
 // sel             : the id of related button
 const btnBindings = [
@@ -39,6 +47,7 @@ const indicateColor = 'rgb(180, 0, 0)'       // 高亮显示方块时的颜色
 
 export {
     blockType,
+    scoringRules,
     btnBindings,
     btnDownState,
     btnUpState,
