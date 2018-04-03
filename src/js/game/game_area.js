@@ -1,6 +1,11 @@
-import { defaultColor, indicateColor } from '../const'
+import {
+    generateBlockProb,
+    defaultColor,
+    occupiedColor,
+    indicateColor,
+} from '../const'
 
-// 
+// 用于表示一个俄罗斯方块活动的区域
 export default class GameArea {
     constructor (game) {
         this.game = game
@@ -31,7 +36,8 @@ export default class GameArea {
     // 初始化board，board用于表示游戏界面的所有方块
     // 初始时将所有方块的颜色设置为默认的颜色，occupied用于表示该方块时候已经被占据
     init() {
-        for (let i = 0; i < this.row; i++) {
+        let row = this.row
+        for (let i = 0; i < row; i++) {
             this.board[i] = []
             let line = this.board[i]
             for (let j = 0; j < this.column; j++) {
@@ -43,6 +49,11 @@ export default class GameArea {
         }
     }
 
+    // 设置初始行
+    setPresetLines(num) {
+        this.generateRandomRows(num)
+    }
+
     // 设置一整行的方块
     setLine(lineIndex, color, occupied) {
         let line = this.board[lineIndex]
@@ -51,6 +62,35 @@ export default class GameArea {
             block.color = color
             block.occupied = occupied
         }
+    }
+
+    // 生成随机行
+    generateRandomRows(num) {
+        let lastIndex = this.row - num
+        for (let i = this.row - 1; i >= lastIndex; i--) {
+            let row = this.board[i]
+            for (let j = this.column - 1; j >= 0; j--) {
+                let block = row[j]
+                let generateBlock = Math.random() <= generateBlockProb
+                block.color = generateBlock ? occupiedColor : defaultColor
+                block.occupied = generateBlock
+            }
+
+            if (this.lineIsFull(row)) {
+                let index = Math.floor(Math.random() * 10)
+                let block = row[index]
+                block.color = defaultColor
+                block.occupied = false
+            }
+        }
+    }
+
+    lineIsFull(line) {
+        return line.map(b => {
+            return b.occupied
+        }).reduce((prev, cur) => {
+            return prev && cur
+        })
     }
 
     // 设置用于在清除满行的执行的对清除行数计分函数
@@ -72,13 +112,7 @@ export default class GameArea {
     update() {
         let lines = []
         for (let i = 0; i < this.row; i++) {
-            let full = this.board[i].map((b) => {
-                return b.occupied
-            }).reduce((prev, cur) => {
-                return prev && cur
-            })
-
-            if (full) {
+            if (this.lineIsFull(this.board[i])) {
                 lines.push(i)
             }
         }

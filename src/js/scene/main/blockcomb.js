@@ -49,13 +49,15 @@ export default class BlockComb {
         this.updateCD = this.maxUpdateCD
         this.retired = false    // retired 为真时重置 blockcomb
     }
-    
+
     setLevel(level) {
         this.level = level
         let fps = this.game.fps
+
         let speed = speeds[this.level - 1]
         this.maxUpdateCD = Math.floor(fps * speed / 1000)
         this.updateCD = this.maxUpdateCD
+
         let delay = delays[this.level - 1]
         this.delay = Math.floor(fps * delay / 1000)
     }
@@ -64,8 +66,7 @@ export default class BlockComb {
         if (this.level < this.maxLevel) {
             let next = this.level + 1
             this.setLevel(next)
-            let lb = this.game.levelBoard
-            lb.setNumber(next)
+            this.game.setLevel(next)
         }
     }
 

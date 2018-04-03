@@ -1,7 +1,7 @@
 import GameScene from '../../game/game_scene'
 import SceneMain from '../main/index'
 import ActionController from '../../utils/action_controller'
-import { speeds, keySettings } from '../../const'
+import { speeds, maxStartLines, keySettings } from '../../const'
 
 export default class SceneTitle extends GameScene {
     constructor (game) {
@@ -14,21 +14,20 @@ export default class SceneTitle extends GameScene {
         this.titleType = 1
         this.startLevel = 1
         this.maxLevel = speeds.length
+        this.startLines = 0
+        this.maxStartLines = maxStartLines
     }
 
     setup() {
         let game = this.game
         let that = this
 
-        // 获得记录级别的面板，在 title 场景用于记录初始级别
-        this.levelBoard = this.game.levelBoard
-
         // 注册“降落”按键为开始游戏的按键
         let dropCode = keySettings.drop.keyCode
         game.registerAction(dropCode, ActionController.new({
             key: 'drop',
             once: true,
-            callback: (clear) => {
+            callback() {
                 that.startGame()
             },
         }))
@@ -38,7 +37,7 @@ export default class SceneTitle extends GameScene {
         game.registerAction(leftCode, ActionController.new({
             key: 'left',
             once: true,
-            callback: () => {
+            callback() {
                 that.updateLevel(-1)
             }
         }))
@@ -48,16 +47,38 @@ export default class SceneTitle extends GameScene {
         game.registerAction(rightCode, ActionController.new({
             key: 'right',
             once: true,
-            callback: () => {
+            callback() {
                 that.updateLevel(1)
             }
+        }))
+
+        // 注册“旋转”按键为增加初始行
+        let upCode = keySettings.rotate.keyCode
+        game.registerAction(upCode, ActionController.new({
+            key: 'up',
+            once: true,
+            callback() {
+                that.updateLines(1)
+            },
+        }))
+
+        // 注册“加速”按键为减少初始行
+        let downCode = keySettings.speedUp.keyCode
+        game.registerAction(downCode, ActionController.new({
+            key: 'down',
+            once: true,
+            callback() {
+                that.updateLines(-1)
+            },
         }))
     }
 
     init() {
         let game = this.game
 
-        this.levelBoard.setNumber(this.startLevel)
+        game.setLevel(this.startLevel)
+        game.setLineBoardTitle('Start lines')
+        game.setLines(this.startLines)
         game.area.draw()
     }
 
@@ -100,7 +121,19 @@ export default class SceneTitle extends GameScene {
             level -= this.maxLevel
         }
 
-        this.levelBoard.setNumber(level)
+        this.game.setLevel(level)
         this.startLevel = level
+    }
+
+    updateLines(num) {
+        let lines = this.startLines + num
+        if (lines < 0) {
+            lines += this.maxStartLines + 1
+        } else if (lines > this.maxStartLines) {
+            lines -= this.maxStartLines + 1
+        }
+
+        this.game.setLines(lines)
+        this.startLines = lines
     }
 }

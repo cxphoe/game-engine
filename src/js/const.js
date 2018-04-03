@@ -12,13 +12,23 @@ const blockType = [
 // 计分规则：消除行数与相应的分数
 const clearPoints = [100, 300, 500, 800]
 
+// 游戏不同的级别相应的游戏速度；自动根据该数组判断最大级别
 const speeds = [800, 650, 500, 400, 300, 200]
 
+// 级别相对应的方块组合的在移动时的延迟
 const delays = [50, 60, 70, 80, 90, 100]
 
+// 代表每消除该数目的行数时，游戏会更新级别
 const linesForEachLevel = 20
 
+// 代表在游戏在每次更新级别后方块落地的分数增量
 const blockScoreIncrement = 2
+
+// 代表在随机生成方块时的概率
+const generateBlockProb = 0.6
+
+// 能够生成的最多的初始行数目
+const maxStartLines = 10
 
 // 按键设置：
 //     keyCode 为按键相应的键码
@@ -77,6 +87,8 @@ export {
     delays,
     linesForEachLevel,
     blockScoreIncrement,
+    generateBlockProb,
+    maxStartLines,
     keySettings,
     btnDownState,
     btnUpState,

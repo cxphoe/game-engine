@@ -37,7 +37,7 @@ export default class SceneMain extends GameScene {
             key: 'left',
             begin: 200,
             interval: 100,
-            callback: (clear) => {
+            callback() {
                 that.bc.moveLeft()
             },
         }))
@@ -48,7 +48,7 @@ export default class SceneMain extends GameScene {
             key: 'right',
             begin: 200,
             interval: 100,
-            callback: (clear) => {
+            callback() {
                 that.bc.moveRight()
             },
         }))
@@ -57,7 +57,7 @@ export default class SceneMain extends GameScene {
         let speedUpCode = keySettings.speedUp.keyCode
         game.registerAction(speedUpCode, ActionController.new({
             key: 'speedUp',
-            callback: (clear) => {
+            callback(clear) {
                 that.bc.retired ? clear() : that.bc.updateCD = -10
             },
         }))
@@ -67,7 +67,7 @@ export default class SceneMain extends GameScene {
         game.registerAction(rotateCode, ActionController.new({
             key: 'rotate',
             once: true,
-            callback: (clear) => {
+            callback() {
                 that.bc.rotate()
             },
         }))
@@ -77,7 +77,7 @@ export default class SceneMain extends GameScene {
         game.registerAction(dropCode, ActionController.new({
             key: 'drop',
             once: true,
-            callback: (clear) => {
+            callback() {
                 that.bc.drop()
             },
         }))
@@ -87,7 +87,7 @@ export default class SceneMain extends GameScene {
         game.registerAction(resetCode, ActionController.new({
             key: 'reset',
             once: true,
-            callback: (clear) => {
+            callback() {
                 that.resetGame()
             },
         }))
@@ -97,7 +97,7 @@ export default class SceneMain extends GameScene {
         game.registerAction(pauseCode, ActionController.new({
             key: 'pause',
             once: true,
-            callback: (clear) => {
+            callback() {
                 game.isPaused() ? game.unpause() : game.pause()
             },
         }))
@@ -107,36 +107,37 @@ export default class SceneMain extends GameScene {
     init() {
         let game = this.game
 
-        let startLevel = game.levelBoard.getNumber()
-        this.bc.setLevel(startLevel)
+        let level = this.game.getLevel()
+        this.bc.setLevel(level)
         // 每次进入场景都行初始化 blockcomb
         this.bc.init()
 
-        let clb = game.lineCountBoard
-        clb.setTitle('Cleans')
-        clb.setNumber(0)
+        let presetLines = game.getLines()
+        game.area.setPresetLines(presetLines)
 
-        let sb = game.scoreBoard
-        sb.setTitle('Points')
-        sb.setNumber(0)
+        game.setLineBoardTitle('Cleans')
+        game.setLines(0)
 
-        // 初始号计分的有关信息
+        game.setScoreBoardTitle('Points')
+        game.setScore(0)
+
+        // 初始化计分的有关信息
         this.eachBlockScore = 10
         this.clearLines = 0
     }
 
     addScore(score) {
-        let sb = this.game.scoreBoard
-        let sprev = sb.getNumber()
-        sb.setNumber(score + sprev)
+        let game = this.game
+        let sprev = game.getScore()
+        game.setScore(score + sprev)
     }
 
     countScore(rows) {
         if (rows > 0) {
-            let lcb = this.game.lineCountBoard
-            let cprev = lcb.getNumber()
+            let game = this.game
+            let cprev = game.getLines()
             let lineAmount = rows + cprev
-            lcb.setNumber(lineAmount)
+            game.setLines(lineAmount)
 
             this.addScore(clearPoints[rows - 1])
 

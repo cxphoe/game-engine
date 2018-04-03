@@ -78,6 +78,38 @@ export default class Game extends DrawingBoard {
         this.eventCtrler.removeAllCallbacks()
     }
 
+    setLineBoardTitle(str) {
+        this.lineCountBoard.setTitle(str)
+    }
+
+    setScoreBoardTitle(str) {
+        this.scoreBoard.setTitle(str)
+    }
+
+    getLines() {
+        return this.lineCountBoard.getNumber()
+    }
+
+    setLines(num) {
+        this.lineCountBoard.setNumber(num)
+    }
+
+    getLevel() {
+        return this.levelBoard.getNumber()
+    }
+
+    setLevel(num) {
+        this.levelBoard.setNumber(num)
+    }
+
+    getScore() {
+        return this.scoreBoard.getNumber()
+    }
+
+    setScore(num) {
+        this.scoreBoard.setNumber(num)
+    }
+
     // 游戏场景替换
     replaceScene(Scene, name) {
         // cancel the registered functions
