@@ -1,3 +1,4 @@
+// 《JS高级程序设计》中的源码
 export default class EventUtil {
     constructor() {}
 
@@ -49,5 +50,4 @@ export default class EventUtil {
             element['on' + type] = handler
         }
     }
-
 }

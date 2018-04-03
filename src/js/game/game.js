@@ -10,11 +10,16 @@ import GameArea from './game_area'
 
 import SceneReset from '../scene/reset/index'
 
+// 游戏主体
 export default class Game extends DrawingBoard {
     constructor(callback) {
+        // 得到 id 为 area 的 canvas 作为画板
         super('#area')
-        this.blockSize = this.canvas.width / 10        
+        // 设置每个方块的大小
+        this.blockSize = this.canvas.width / 10
+        // 用来记录 setInterval 返回的循环事件 id,方便取消     
         this.process = null
+        // 游戏初始完成之后执行的回调
         this.callbackRun = callback
 
         this.default()
@@ -39,8 +44,11 @@ export default class Game extends DrawingBoard {
         this.clock = Clock.new()
         this.storage = ScoreStorage.new()
         
+        // 分数板
         this.scoreBoard = GameBoard.new('#point span', '#point p')
+        // 记录清除行数的面板
         this.clearCountBoard = GameBoard.new('#cleans span', '#cleans p')
+        // 暂停标志
         this.pauseSign = PauseSign.new()
 
         this.area = GameArea.instance(this)
@@ -67,6 +75,7 @@ export default class Game extends DrawingBoard {
         this.pauseSign.unpause()
     }
 
+    // 注册相应键码的事件
     registerAction(keyCode, controller) {
         this.eventCtrler.registerController(keyCode, controller)
     }
@@ -75,6 +84,7 @@ export default class Game extends DrawingBoard {
         this.eventCtrler.removeAllCallbacks()
     }
 
+    // 游戏场景替换
     replaceScene(Scene, name) {
         // cancel the registered functions
         // this.removeAllActions()

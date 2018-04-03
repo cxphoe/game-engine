@@ -13,8 +13,8 @@ export default class SceneTitle extends GameScene {
     }
 
     setup() {
-        var game = this.game
-        var that = this
+        let game = this.game
+        let that = this
 
         // 按 空格 开始游戏
         game.registerAction(32, ActionController.new({
@@ -27,28 +27,28 @@ export default class SceneTitle extends GameScene {
     }
 
     init() {
-        var game = this.game
+        let game = this.game
 
         game.area.draw()
     }
 
     startGame() {
-        var game =  this.game
+        let game =  this.game
         game.replaceScene(SceneMain, 'main')
         game.init()
         this.title.style.visibility = 'hidden'
     }
 
     update() {
-        var t = this.title
-        var game = this.game
+        let t = this.title
+        let game = this.game
         if (this.count % this.showGap == 0) {
-            var visible = t.style.visibility == 'visible'
+            let visible = t.style.visibility == 'visible'
             t.style.visibility = visible ? 'hidden' : 'visible'
         }
         if (this.count % this.titleShowGap == 0) {
-            var sb = game.scoreBoard
-            var s = game.storage
+            let sb = game.scoreBoard
+            let s = game.storage
             if (this.titleType) {
                 sb.setTitle('Max')
                 sb.setNumber(s.getMaxRecord())

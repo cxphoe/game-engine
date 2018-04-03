@@ -1,5 +1,5 @@
+// 用来管理 状态指示器
 export default class GameIndicator {
-    // 用来管理 状态指示器
     constructor(sel) {
         this.component = document.querySelector(sel)
     }

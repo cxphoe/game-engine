@@ -2,27 +2,30 @@ import EventUtil from '../utils/event_util'
 import { btnBindings, btnDownState, btnUpState } from '../const'
 import { isMobile } from '../utils/function'
 
-var log = console.log.bind()
+let log = console.log.bind()
 
 export default class EventController extends EventUtil {
     constructor(game) {
         super()
         this.game = game
         // pauseKeyCode : a special key to unauthorize the use of all the other keys
+        // 用于暂停所有事件的键码
         this.pauseKeyCode = null
-        /* keyBinds     : will has attritutes as follows
+        /* keyBinds     : will contain structure as follows 每个键码都会含有以下结构
                 {
-                    sceneControllers: { 
-                        sceneName1 : controller1,
+                    不同的场景会拥有不同的controller
+                    sceneControllers: {
+                        sceneName1 : controller1（ActionController实例）,
                         sceneName2 : controller2,
-                        ... 
+                        ...
                     },
-                    component: component,
-                    actived: true or false,
+                    component: 一个HTMLElement实例,
+                    actived: Boolean 表示component有没有被激活,用于防止多次触发,
                 }
         */
         this.keyBinds = {}
         
+        // 处理设置好的 btnBindings
         this.processRawBinds()
         this.setup()
     }
@@ -35,27 +38,31 @@ export default class EventController extends EventUtil {
                 this.keyBinds[kc].actived = true
             }
         }
+
+        // 释放按键时触发controller的up函数
         const up = (kc, controller) => {
             this.keyBinds[kc].actived = false
             controller.up()
         }
-        var buttons = document.querySelector('#button')
+
+        // 通过id为button的HTMLElement对所有按钮元素进行事件代理
+        let buttons = document.querySelector('#button')
         this.addKBHandler(window, 'keydown', btnDownState, down)
         this.addKBHandler(window, 'keyup', btnUpState, up)
-        
-        var ism = isMobile()
+
+        let ism = isMobile()
         const start = ism ? 'touchstart' : 'mousedown'
         const out = 'mouseout'
         const end = ism ? 'touchend' : 'mouseup'
         this.addMouseHandler(buttons, start, btnDownState, down)
         this.addMouseHandler(buttons, end, btnUpState, up)
         this.addMouseHandler(buttons, out, btnUpState, up)
-        // 当 user 没有在按钮里面结束鼠标事件时，如果是不会触发 mouseup 事件的
+        // 当用户没有在按钮里面结束鼠标事件时，是不会触发 mouseup 事件的
         // 只有用 mouseout 才能保证按键能正常结束，恢复原来的按键状况
     }
 
     init() {
-        for (var k in this.keyBinds) {
+        for (let k in this.keyBinds) {
             if (this.keyBinds[k]) {
                 this.keyBinds[k].actived = false
             }
@@ -68,9 +75,9 @@ export default class EventController extends EventUtil {
 
     // 处理设置好的 bindings 得到 keyCodes 对应的元素
     processRawBinds() {
-        var rawBinds = btnBindings
-        var binds = {}
-        for (var [keyCode, sel] of rawBinds) {
+        let rawBinds = btnBindings
+        const binds = {}
+        for (let [keyCode, sel] of rawBinds) {
             binds[keyCode] = {
                 component: document.querySelector(sel),
                 sceneControllers: {},
@@ -82,8 +89,8 @@ export default class EventController extends EventUtil {
 
     // 根据当前的 game.sceneName 来设置 controller (EventController 实例)
     registerController(keyCode, controller) {
-        var binds = this.keyBinds[keyCode]
-        var sceneName = this.game.sceneName
+        let binds = this.keyBinds[keyCode]
+        let sceneName = this.game.sceneName
 
         if (!binds) {
             binds = this.keyBinds[keyCode] = {
@@ -91,27 +98,28 @@ export default class EventController extends EventUtil {
                 actived: false,
             }
         }
-        var sctrls = binds.sceneControllers
+        let sctrls = binds.sceneControllers
         sctrls[sceneName] = controller
     }
 
     // 对 keybinds 里的对象添加键盘事件
     addKBHandler(element, type, state, callback) {
         log('add', type, 'handler of btns to', element.toString())
-        var game = this.game
+        let game = this.game
         this.addHandler(element, type, (event) => {
             this.keyboardHandler(event, state, callback)
         })
     }
 
     keyboardHandler(event, state, callback) {
-        var kc = event.keyCode
-        var game = this.game
+        let kc = event.keyCode
+        let game = this.game
+        // 判断按下的键是否在绑定的键对中
         if (kc in this.keyBinds) {
-            var bind = this.keyBinds[kc]
-            var paused = game.isPaused()
-            var cpn = bind.component
-            var ctrl = bind.sceneControllers[game.sceneName] // 得到当前场景对应的注册controller
+            let bind = this.keyBinds[kc]
+            let paused = game.isPaused()
+            let cpn = bind.component
+            let ctrl = bind.sceneControllers[game.sceneName] // 得到当前场景对应的注册controller
             if (cpn) {
                 // 更新组件的状态
                 cpn.className = state
@@ -131,13 +139,14 @@ export default class EventController extends EventUtil {
     }
 
     mouseHandler(event, state, callback) {
-        var e = this.getTarget(event)
-        var paused = this.game.isPaused()
-        for (var kc in this.keyBinds) {
-            var bind = this.keyBinds[kc]
-            var cpn = bind.component
-            var ctrl = bind.sceneControllers[this.game.sceneName]
-            if (cpn !== e) {
+        let tgt = this.getTarget(event)
+        let paused = this.game.isPaused()
+        // 遍历键值对，判断是否有相应的按钮被触发
+        for (let kc in this.keyBinds) {
+            let bind = this.keyBinds[kc]
+            let cpn = bind.component
+            let ctrl = bind.sceneControllers[this.game.sceneName]
+            if (cpn !== tgt) {
                 continue
             }
 

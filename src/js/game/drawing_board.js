@@ -1,3 +1,4 @@
+// 一个用于画出俄罗斯方块的画板(canvas)
 export default class DrawingBoard {
     constructor(selectors) {
         this.canvas = document.querySelector(selectors)
@@ -10,16 +11,15 @@ export default class DrawingBoard {
     }
 
     drawBlock(x, y, bs, color) {
-        var gap, space, ctx, length, offsetX, offsetY
-        gap = bs / 15
-        space = bs / 10
-        ctx = this.ctx
+        let gap = bs / 15
+        let space = bs / 10
+        let ctx = this.ctx
         
         ctx.fillStyle = color
         // 画外框
-        offsetX = bs * x + gap
-        offsetY = bs * y + gap
-        length = bs - 2 * gap        
+        let offsetX = bs * x + gap
+        let offsetY = bs * y + gap
+        let length = bs - 2 * gap        
         ctx.fillRect(offsetX, offsetY, length, length)
         
         // 请空间隔

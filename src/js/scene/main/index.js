@@ -9,17 +9,20 @@ export default class SceneMain extends GameScene {
     }
 
     setup() {
-        var that = this
-        var game = this.game
-        var area = game.area
+        let that = this
+        let game = this.game
+        let area = game.area
 
+        // 每组方块到达底部时得到的分数
         this.eachBlockScore = 10
 
         this.bc = BlockComb.instance(game)
         this.pushElement(area)
         this.pushElement(this.bc)
        
-        area.setUpScoreRule(this)
+        area.setUpScoreRule(rows => {
+            this.countScore(rows)
+        })
 
         // 按 '向左箭头' 左移
         game.registerAction(37, ActionController.new({
@@ -77,7 +80,7 @@ export default class SceneMain extends GameScene {
         }))
 
         // 设置 'P' 成为game的 pause key
-        var pauseKeyCode = 80
+        let pauseKeyCode = 80
         game.registerAction(pauseKeyCode, ActionController.new({
             key: 'p',
             once: true,
@@ -93,18 +96,18 @@ export default class SceneMain extends GameScene {
     }
 
     addScore(score) {
-        var sb = this.game.scoreBoard
-        var sprev = sb.getNumber()
+        let sb = this.game.scoreBoard
+        let sprev = sb.getNumber()
         sb.setNumber(score + sprev)
     }
 
     countScore(rows) {
         if (rows > 0) {
-            var ccb = this.game.clearCountBoard
-            var cprev = ccb.getNumber()
+            let ccb = this.game.clearCountBoard
+            let cprev = ccb.getNumber()
             ccb.setNumber(rows + cprev)
             
-            for (var n = 0; rows > 0; rows--) {
+            for (let n = 0; rows > 0; rows--) {
                 n += rows
             }
 
@@ -113,12 +116,12 @@ export default class SceneMain extends GameScene {
     }
 
     resetGame() {
-        var game = this.game
-        
+        let game = this.game
+         
         game.replaceScene(SceneReset, 'Reset')
-        var s = game.storage
-        var maxRecord = s.getMaxRecord()
-        var lastRecord = game.scoreBoard.getNumber()
+        let s = game.storage
+        let maxRecord = s.getMaxRecord()
+        let lastRecord = game.scoreBoard.getNumber()
         if (lastRecord > maxRecord) {
             s.setMaxRecord(lastRecord)
         }
@@ -126,9 +129,9 @@ export default class SceneMain extends GameScene {
     }
 
     update() {
-        var bc = this.bc
-        var game = this.game
-        var area = game.area        
+        let bc = this.bc
+        let game = this.game
+        let area = game.area        
 
         if (game.isPaused() || area.scoring) {
             return

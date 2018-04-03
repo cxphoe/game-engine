@@ -2,6 +2,7 @@ import Preview from './preview'
 import { collide, coorDiff } from '../../utils/function'
 import { occupiedColor, indicateColor } from '../../const'
 
+// 方块组合
 export default class BlockComb {
     constructor (game) {
         this.game = game
@@ -17,6 +18,7 @@ export default class BlockComb {
 
     default() {
         this.defaultColor = occupiedColor
+        // indicateColor 用于方块在到达底部的时候高亮显示的颜色
         this.indicateColor = indicateColor
         // blockcomb 下降的CD
         this.maxUpdateCD = Math.floor(this.game.fps / 1.5)
@@ -30,7 +32,7 @@ export default class BlockComb {
     // change the attrs of blockComb instead of creating a new one
     // when the game need another block combination
     init() {
-        var p = this.preview
+        let p = this.preview
         this.coors = p.coors
         // update preivew
         p.next()
@@ -46,11 +48,12 @@ export default class BlockComb {
     }
 
     move(offset) {
+        // 方块退休时，不能移动
         if (this.retired) {
             return
         }
         
-        var area = this.game.area
+        let area = this.game.area
         if (! collide(this.x+offset, this.y, this.coors, area)) {
             this.x += offset
         }
@@ -65,12 +68,13 @@ export default class BlockComb {
     }
 
     rotate() {
+        // 方块退休时不能旋转
         if (this.retired) {
             return
         }
         // get rotated coordinates
-        var newCoors = this.rotateCoors(this.coors)
-        var area = this.game.area
+        let newCoors = this.rotateCoors(this.coors)
+        let area = this.game.area
         if (! collide(this.x, this.y, newCoors, area)) {
             this.coors = newCoors
         }
@@ -78,15 +82,16 @@ export default class BlockComb {
 
     rotateCoors(coors) {
         // rotate coordinates
-        var newCoors = coors.map(c => [-c[1], c[0]])
+        let newCoors = coors.map(c => [-c[1], c[0]])
         // find the smallest one
-        var m = newCoors.sort(function (c1, c2) {
+        let m = newCoors.sort(function (c1, c2) {
             return c1[0] == c2[0] ? c1[1] - c2[1] : c1[0] - c2[0]
         })[0]
         // ensure the first one coor with 0 as x coordinate
         return newCoors.map(c => [c[0]-m[0], c[1]-m[1]])
     }
 
+    // 方块组合直接降落到底部
     drop() {
         if (this.game.area.scoring) {
             return  // area 在计分时不能 drop
@@ -96,11 +101,12 @@ export default class BlockComb {
         }
     }
 
+    // 占据游戏画板
     occupy() {
-        var board = this.game.area.board
-        for (var c of this.coors) {
+        let board = this.game.area.board
+        for (let c of this.coors) {
             try {
-                var block = board[this.y + c[1]][this.x + c[0]]
+                let block = board[this.y + c[1]][this.x + c[0]]
                 block.occupied = true
                 block.color = this.defaultColor
             } catch(ex) {
@@ -114,9 +120,10 @@ export default class BlockComb {
         this.color = this.indicateColor
     }
 
+    // 判断方块组合是否被挡住
     isBlocked() {
-        var row, block, area = this.game.area
-        for (var c of this.coors) {
+        let row, block, area = this.game.area
+        for (let c of this.coors) {
             try {
                 if (this.y + c[1] + 1 == area.row ||
                     area.board[this.y + c[1] + 1][this.x + c[0]].occupied)
@@ -127,10 +134,10 @@ export default class BlockComb {
         }
         return false
     }
-    
+
     draw() {
-        var game = this.game
-        for (var c of this.coors) {
+        let game = this.game
+        for (let c of this.coors) {
             game.drawBlock(this.x + c[0], this.y + c[1], this.color)
         }
     }

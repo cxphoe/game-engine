@@ -3,7 +3,7 @@ var events = {}
 export default class ActionController {
     constructor(options) {
         this.key = options.key
-        this.callback = options.callback
+        this.callback = options.callback || (() => {})
         this.begin = options.begin || 100
         this.interval = options.interval || 50
         this.once = options.once
@@ -40,6 +40,7 @@ export default class ActionController {
         }, this.start || this.interval)
     }
 
+    // 清除所有触发的回调
     clearAll() {
         for (var k in events) {
             var p = events[k]

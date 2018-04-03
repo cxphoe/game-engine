@@ -3,6 +3,7 @@ const keys = {
     maxRecordKey: "tetris-max-record",
 }
 
+// 用于对游戏分数存储的处理
 export default class ScoreStorage {
     constructor() {
         this.storage = this.getLocalStorage()
@@ -18,13 +19,13 @@ export default class ScoreStorage {
         } else if (typeof globalStorage == 'object') {
             return globalStorage[location.host]
         } else {
-            console.warn('Local storage not available. Your record will be forgetted after leave')
+            console.warn('Local storage not available. Your record will be forgot after leave')
             return {}
         }
     }
 
     getRecord(key) {
-        var num = parseInt(this.storage[key])
+        let num = parseInt(this.storage[key])
         return isNaN(num) ? 0 : num
     }
 

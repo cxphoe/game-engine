@@ -1,3 +1,4 @@
+// 游戏场景的元类
 export default class GameScene {
     constructor (game) {
         this.game = game
@@ -15,6 +16,7 @@ export default class GameScene {
 
     init() {}
 
+    // 直接触发所有子元素的 draw
     draw() {
         for (var e of this.elements) {
             e.draw()

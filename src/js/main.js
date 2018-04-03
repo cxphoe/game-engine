@@ -4,14 +4,15 @@ import { isMobile } from './utils/function'
 import style from '../css/index.css'
 
 window.onload = function() {
+    // 判断是否是移动端
     if (isMobile()) {
-        var o = { passive: false }
+        var options = { passive: false }
     
         document.body.style.fontSize = '12px'
         // 禁止双指缩放 以及 阻止长按出现菜单
         document.documentElement.addEventListener('touchstart', (event) => {
             event.preventDefault();
-        }, o);
+        }, options);
         
         // 禁止双击缩放
         var lastTouchEnd = 0;
@@ -21,12 +22,12 @@ window.onload = function() {
                 event.preventDefault();
             }
             lastTouchEnd = now;
-        }, o);
+        }, options);
         
         // 禁止滚动
         document.documentElement.addEventListener('touchmove', (event) => {
             event.preventDefault()
-        }, o)
+        }, options)
     }
 
     // 调整界面

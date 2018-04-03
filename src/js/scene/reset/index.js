@@ -17,7 +17,7 @@ export default class SceneReset extends GameScene {
     }
 
     fillArea() {
-        var area = this.game.area
+        let area = this.game.area
         area.setLine(this.index, occupiedColor, false)
         if (--this.index < 0) {
             this.index = 0
@@ -26,7 +26,7 @@ export default class SceneReset extends GameScene {
     }
     
     clearArea() {
-        var area = this.game.area
+        let area = this.game.area
         area.setLine(this.index, defaultColor, false)
         if (++this.index == 20) {
             this.restartGame()

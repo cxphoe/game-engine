@@ -20,12 +20,15 @@ const btnBindings = [
                         [82,  '#reset_btn'], // r
 ]
 
+// 按钮按下，松开的类名
 const btnDownState = 'pressed'
 const btnUpState = ''
 
+// 暂停标志暂停，不暂停的类名
 const pauseState = 'paused'
 const unpauseState = 'unpaused'
 
+// 游戏时钟滴答的类名
 const tikState = 'tik'
 const tokState = 'tok'
 

@@ -12,6 +12,7 @@ export default class PauseSign extends GameIndicator {
 
     pause() {
         this.paused = true
+        // 暂停指示器闪烁
         this.process = setInterval(() => {
             this.count++ % 2 == 0 ? this.setState(pauseState) :
                                     this.setState(unpauseState)

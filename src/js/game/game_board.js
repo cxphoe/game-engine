@@ -1,5 +1,5 @@
 export default class GameBoard {
-    // Board 用来管理跟数字有关的 elements
+    // Board 用来管理跟数字有关的 HTMLElement 实例
     constructor(eltsSel, titleSel) {
         this.numElts = document.querySelectorAll(eltsSel)
         if (titleSel) {
@@ -17,8 +17,8 @@ export default class GameBoard {
 
     // 通过判断元素的样式来计算所显示的数字的大小
     getNumber() {
-        var lastChar, eltClass, n, sum = 0
-        for (var i = this.numElts.length - 1; i >= 0; i--) {
+        let lastChar, eltClass, n, sum = 0
+        for (let i = this.numElts.length - 1; i >= 0; i--) {
             eltClass = this.numElts[i].className
             lastChar = eltClass == '' ? 0 : eltClass[eltClass.length-1]
             n = parseInt(lastChar)
@@ -31,8 +31,9 @@ export default class GameBoard {
 
     // 通过改变元素的样式来改变显示的数字
     setNumber(num) {
-        var r, length = this.numElts.length
-        for (var i = 0; i < length && num > 0; i++) {
+        let r, length = this.numElts.length
+        let i = 0
+        for (; i < length && num > 0; i++) {
             r = num % 10
             this.setDigit(r, this.numElts[i])
             num = (num - r) / 10
