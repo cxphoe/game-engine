@@ -1,5 +1,5 @@
 import EventUtil from '../utils/event_util'
-import { btnBindings, btnDownState, btnUpState } from '../const'
+import { keySettings, btnDownState, btnUpState } from '../const'
 import { isMobile } from '../utils/function'
 
 let log = console.log.bind()
@@ -25,8 +25,8 @@ export default class EventController extends EventUtil {
         */
         this.keyBinds = {}
         
-        // 处理设置好的 btnBindings
-        this.processRawBinds()
+        // 处理设置好的 keySettings
+        this.processSettings()
         this.setup()
     }
 
@@ -74,10 +74,11 @@ export default class EventController extends EventUtil {
     }
 
     // 处理设置好的 bindings 得到 keyCodes 对应的元素
-    processRawBinds() {
-        let rawBinds = btnBindings
+    processSettings() {
+        let settings = keySettings
         const binds = {}
-        for (let [keyCode, sel] of rawBinds) {
+        for (let key in settings) {
+            let { keyCode, sel } = settings[key]
             binds[keyCode] = {
                 component: document.querySelector(sel),
                 sceneControllers: {},

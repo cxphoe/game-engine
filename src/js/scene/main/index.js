@@ -2,7 +2,7 @@ import GameScene from '../../game/game_scene'
 import BlockComb from './blockcomb'
 import SceneReset from '../reset/index'
 import ActionController from '../../utils/action_controller'
-import { scoringRules } from '../../const'
+import { keySettings, scoringRules } from '../../const'
 
 export default class SceneMain extends GameScene {
     constructor (game) {
@@ -26,8 +26,9 @@ export default class SceneMain extends GameScene {
             this.countScore(rows)
         })
 
-        // 按 '向左箭头' 左移
-        game.registerAction(37, ActionController.new({
+        // 注册“左移”按键事件
+        let leftCode = keySettings.left.keyCode
+        game.registerAction(leftCode, ActionController.new({
             key: 'left',
             begin: 200,
             interval: 100,
@@ -36,8 +37,9 @@ export default class SceneMain extends GameScene {
             },
         }))
 
-        // 按 '向右箭头' 右移
-        game.registerAction(39, ActionController.new({
+        // 注册“右移”按键事件
+        let rightCode = keySettings.right.keyCode
+        game.registerAction(rightCode, ActionController.new({
             key: 'right',
             begin: 200,
             interval: 100,
@@ -46,51 +48,55 @@ export default class SceneMain extends GameScene {
             },
         }))
         
-        // 按 '向下箭头' 加速
-        game.registerAction(40, ActionController.new({
-            key: 'down',
+        // 注册“加速”按键事件
+        let speedUpCode = keySettings.speedUp.keyCode
+        game.registerAction(speedUpCode, ActionController.new({
+            key: 'speedUp',
             callback: (clear) => {
                 that.bc.retired ? clear() : that.bc.updateCD = -10
             },
         }))
         
-        // 按 '向上箭头' 旋转
-        game.registerAction(38, ActionController.new({
-            key: 'up',
+        // 注册“旋转”按键事件
+        let rotateCode = keySettings.rotate.keyCode
+        game.registerAction(rotateCode, ActionController.new({
+            key: 'rotate',
             once: true,
             callback: (clear) => {
                 that.bc.rotate()
             },
         }))
 
-        // 按 '空格' 降落
-        game.registerAction(32, ActionController.new({
-            key: 'space',
+        // 注册“降落”按键事件
+        let dropCode = keySettings.drop.keyCode
+        game.registerAction(dropCode, ActionController.new({
+            key: 'drop',
             once: true,
             callback: (clear) => {
                 that.bc.drop()
             },
         }))
 
-        // 按 'R' 重置
-        game.registerAction(82, ActionController.new({
-            key: 'r',
+        // 注册“重置”按键事件
+        let resetCode = keySettings.reset.keyCode
+        game.registerAction(resetCode, ActionController.new({
+            key: 'reset',
             once: true,
             callback: (clear) => {
                 that.resetGame()
             },
         }))
 
-        // 设置 'P' 成为game的 pause key
-        let pauseKeyCode = 80
-        game.registerAction(pauseKeyCode, ActionController.new({
-            key: 'p',
+        // 注册“暂停”按键事件，并设置为game的 pause key
+        let pauseCode = keySettings.pause.keyCode
+        game.registerAction(pauseCode, ActionController.new({
+            key: 'pause',
             once: true,
             callback: (clear) => {
                 game.isPaused() ? game.unpause() : game.pause()
             },
         }))
-        game.setPauseKeyCode(pauseKeyCode)
+        game.setPauseKeyCode(pauseCode)
     }
 
     init() {

@@ -43,6 +43,7 @@ export default class BlockComb {
         p.draw()
 
         // x and y indicate block combination's place in board
+        this.x = 3
         this.y = -coorDiff(this.coors, 1) - 1
         this.color = this.defaultColor
         this.updateCD = this.maxUpdateCD

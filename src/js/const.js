@@ -17,17 +17,39 @@ const scoringRules = {
     4: 1500,
 }
 
-// button_bindings : contains [keyCode, sel] pairs
-// sel             : the id of related button
-const btnBindings = [
-                        [38, '#rotate_btn'], // arrow up
-                        [40,   '#down_btn'], // arrow down
-                        [37,   '#left_btn'], // arrow left
-                        [39,  '#right_btn'], // arrow right
-                        [32,   '#drop_btn'], // space
-                        [80,  '#pause_btn'], // p
-                        [82,  '#reset_btn'], // r
-]
+// 按键设置：
+//     keyCode 为按键相应的键码
+//     sel 为按键在 HTML 中的 id ，用于做选择器
+const keySettings = {
+    rotate: {
+        keyCode: 38,            // 方向键向上
+        sel: '#rotate_btn',
+    },
+    speedUp: {
+        keyCode: 40,            // 方向键向下
+        sel: '#down_btn',
+    },
+    left: {
+        keyCode: 37,            // 方向键向左
+        sel: '#left_btn',
+    },
+    right: {
+        keyCode: 39,            // 方向键向右
+        sel: '#right_btn',
+    },
+    drop: {
+        keyCode: 32,            // 空格
+        sel: '#drop_btn',
+    },
+    pause: {
+        keyCode: 80,            // P键
+        sel: '#pause_btn',
+    },
+    reset: {
+        keyCode: 82,            // R键
+        sel: '#reset_btn',
+    },
+}
 
 // 按钮按下，松开的类名
 const btnDownState = 'pressed'
@@ -48,7 +70,7 @@ const indicateColor = 'rgb(180, 0, 0)'       // 高亮显示方块时的颜色
 export {
     blockType,
     scoringRules,
-    btnBindings,
+    keySettings,
     btnDownState,
     btnUpState,
     pauseState,
