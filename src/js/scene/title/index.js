@@ -22,11 +22,17 @@ export default class SceneTitle extends GameScene {
         let game = this.game
         let that = this
 
+        let begin = 250
+        let interval = 150
+
+        let a = []
+        let b = [1, 2, ...a]
         // 注册“降落”按键为开始游戏的按键
         let dropCode = keySettings.drop.keyCode
         game.registerAction(dropCode, ActionController.new({
             key: 'drop',
-            once: true,
+            begin,
+            interval,
             callback() {
                 that.startGame()
             },
@@ -36,7 +42,8 @@ export default class SceneTitle extends GameScene {
         let leftCode = keySettings.left.keyCode
         game.registerAction(leftCode, ActionController.new({
             key: 'left',
-            once: true,
+            begin,
+            interval,
             callback() {
                 that.updateLevel(-1)
             }
@@ -46,7 +53,8 @@ export default class SceneTitle extends GameScene {
         let rightCode = keySettings.right.keyCode
         game.registerAction(rightCode, ActionController.new({
             key: 'right',
-            once: true,
+            begin,
+            interval,
             callback() {
                 that.updateLevel(1)
             }
@@ -56,7 +64,8 @@ export default class SceneTitle extends GameScene {
         let upCode = keySettings.rotate.keyCode
         game.registerAction(upCode, ActionController.new({
             key: 'up',
-            once: true,
+            begin,
+            interval,
             callback() {
                 that.updateLines(1)
             },
@@ -66,7 +75,8 @@ export default class SceneTitle extends GameScene {
         let downCode = keySettings.speedUp.keyCode
         game.registerAction(downCode, ActionController.new({
             key: 'down',
-            once: true,
+            begin,
+            interval,
             callback() {
                 that.updateLines(-1)
             },
