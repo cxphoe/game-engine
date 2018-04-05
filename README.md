@@ -21,11 +21,14 @@
 - [ ] 音效
 - [ ] 多种语言
 
-所有与游戏相关的
-
 ## 整体结构
 
 <img src="showcase/game.png">
+
+- 游戏主体用 `canvas` 元素表示，由 `area` 控制。所有方块（包括 area 中的方块，方块组合）都是直接画出来的。
+- `game` 的主要逻辑是在循环的 `setTimeout` 不断地调用 `draw` 在 `area` 中画出相应的元素。 `game.draw` 调用由 `GameScene` 的实例提供的 `draw`。整个游戏过程中通过切换场景，可以实现不同功能的 `draw`。
+- `game` 的数据更新由 `game.update` 实现。也由不同的场景提供。
+- 所有 `keyboard` 操作都是 `ActionController` 能根据设置实现有规律性的触发。`window` 的 `key` 事件触发频率是先递增，后固定，不符合游戏的操作。
 
 ## Develop
 
