@@ -25,8 +25,6 @@ export default class SceneTitle extends GameScene {
         let begin = 250
         let interval = 150
 
-        let a = []
-        let b = [1, 2, ...a]
         // 注册“降落”按键为开始游戏的按键
         let dropCode = keySettings.drop.keyCode
         game.registerAction(dropCode, ActionController.new({
