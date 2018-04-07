@@ -5,24 +5,38 @@ const entry = __dirname + '/src/js/main.js'
 
 const devtool = 'source-map'
 
-const loaders = [
+const rules = [
     {
-        test: /\.(json)$/,
+        test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'json',
-    },
-    {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        loader: 'babel!eslint-loader',
+        loader: 'babel-loader',
     },
     {
         test: /\.(?:png|jpg|gif)$/,
-        loader: 'url?limit=8192', //小于8k,内嵌;大于8k生成文件
+        loader: 'url-loader',
+        options: {
+            limit: 8192,
+        },
     },
     {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style', 'css'),
+        loader: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: [
+                {
+                    loader: 'css-loader',
+                    options: {
+                        sourceMap: 'true',
+                    },
+                },
+                {
+                    loader: 'postcss-loader',
+                    options: {
+                        sourceMap: 'true',
+                    },
+                },
+            ],
+        })
     },
 ]
 
@@ -36,9 +50,11 @@ const plugins = [
 module.exports = {
     entry: entry,
     devtool: devtool,
-    loaders: loaders,
     plugins: plugins,
+    resolve: {
+        extensions: ['.js', '.json'],
+    },
     module: {
-        loaders: loaders,
+        rules: rules,
     },
 };

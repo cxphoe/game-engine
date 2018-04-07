@@ -25,6 +25,7 @@ html, body {
 }
 
 body {
+    overflow: hidden;
     font-size: 16px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     cursor: default;
