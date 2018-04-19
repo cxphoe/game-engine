@@ -25,7 +25,7 @@ export default class SceneMain extends GameScene {
         this.bc = BlockComb.instance(game)
         this.pushElement(area)
         this.pushElement(this.bc)
-       
+
         // 设置 area 的计分规则
         area.setUpScoreRule(rows => {
             this.countScore(rows)
@@ -105,13 +105,21 @@ export default class SceneMain extends GameScene {
     }
 
     init() {
-        let game = this.game
+        this.levelInit()
+        this.lineInit()
 
-        let level = this.game.getLevel()
-        this.bc.setLevel(level)
         // 每次进入场景都行初始化 blockcomb
         this.bc.init()
+    }
 
+    levelInit() {
+        let level = this.game.getLevel()
+        this.bc.setLevel(level)
+        this.eachBlockScore = 10 + blockScoreIncrement * (level - 1)
+    }
+
+    lineInit() {
+        let game = this.game
         let presetLines = game.getLines()
         game.area.setPresetLines(presetLines)
 
@@ -121,9 +129,7 @@ export default class SceneMain extends GameScene {
         game.setScoreBoardTitle('Points')
         game.setScore(0)
 
-        // 初始化计分的有关信息
-        this.eachBlockScore = 10
-        this.clearLines = 0
+        this.clearLines = 0        
     }
 
     addScore(score) {
