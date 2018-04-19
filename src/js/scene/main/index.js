@@ -10,13 +10,6 @@ import {
 } from '../../const'
 
 export default class SceneMain extends GameScene {
-    constructor (game) {
-        super(game)
-        // 每组方块到达底部时得到的分数
-        this.eachBlockScore = 10
-        this.clearLines = 0
-    }
-
     setup() {
         let that = this
         let game = this.game
