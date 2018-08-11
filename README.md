@@ -2,6 +2,8 @@
 
 ## Tetris
 
+试玩一下：[https://phoeninee.github.io/Tetris/build/](https://phoeninee.github.io/Tetris/build/)
+
 > 俄罗斯方块
 
 游戏由原生javascript实现。界面模仿自 [chvin/react-tetris](https://github.com/chvin/react-tetris)，与以下图片类似：
