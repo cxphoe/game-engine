@@ -12,7 +12,7 @@ const join = (...args) => {
 
 const getRootPath = () => {
     const optionArgs = ArgParser.getOptionArgs();
-    let root = optionArgs['build-path'] || path.resolve(__dirname, '../build');
+    let root = optionArgs['build-path'] || path.resolve(__dirname, '../docs');
     if (!path.isAbsolute(root)) {
         root = path.join(process.cwd(), root);
     }
