@@ -2,7 +2,7 @@
 
 ## Tetris
 
-试玩一下：[https://phoeninee.github.io/Tetris/build/](https://cxphoe.github.io/Tetris/docs/)
+试玩一下：https://cxphoe.github.io/Tetris/docs/
 
 > 俄罗斯方块
 
