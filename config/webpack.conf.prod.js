@@ -56,7 +56,17 @@ module.exports = merge(defaultConfig, {
         // page entry
         new HtmlWebpackPlugin({
             filename: join(TEMPLATE_PATH, 'index.html'),
+            chunks: ['tetris'],
             template: resolve('../src/html/index.html'),
+            minify: {
+                removeComments: true,
+                collapseWhitespace: false,
+            },
+        }),
+        new HtmlWebpackPlugin({
+            filename: join(TEMPLATE_PATH, 'bird.html'),
+            chunks: ['bird'],
+            template: resolve('../src/html/bird.html'),
             minify: {
                 removeComments: true,
                 collapseWhitespace: false,

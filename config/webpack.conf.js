@@ -9,25 +9,16 @@ const {
 } = require('./common');
 
 module.exports = {
-    entry: resolve('../src/js/main.js'),
+    entry: {
+        tetris: [
+            resolve('../src/tetris/main.js'),
+        ],
+        bird: [
+            resolve('../src/bird/main.js'),
+        ],
+    },
     module: {
         rules: [
-            {
-                test: /\.ts$/,
-                exclude: /[\\/]node_modules[\\/]/,
-                use: [
-                    'babel-loader?cacheDirectory=true',
-                    'ts-loader',
-                ],
-            },
-            {
-                test: /\.tsx/,
-                exclude: /[\\/]node_modules[\\/]/,
-                use: [
-                    'babel-loader?cacheDirectory=true',
-                    'ts-loader',
-                ],
-            },
             {
                 test: /\.js$/,
                 include: /[\\/]src[\\/]/,

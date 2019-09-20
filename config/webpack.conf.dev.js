@@ -27,7 +27,13 @@ module.exports = merge(defaultConfig, {
     plugins: [
         new htmlWebpackPlugin({
             filename: 'index.html',
+            chunks: ['tetris'],
             template: resolve('../src/html/index.html'),
+        }),
+        new htmlWebpackPlugin({
+            filename: 'bird.html',
+            chunks: ['bird'],
+            template: resolve('../src/html/bird.html'),
         }),
         htmlHotPlugin,
     ],
