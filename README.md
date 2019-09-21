@@ -4,8 +4,8 @@
 
 试玩一下：
 
-- [俄罗斯方块](https://cxphoe.github.io/Tetris/docs/) 支持移动端 / PC 端
-- [Flappy Bird](https://cxphoe.github.io/Tetris/docs/bird.html)
+- [俄罗斯方块](https://cxphoe.github.io/game-engine/docs/) 支持移动端 / PC 端
+- [Flappy Bird](https://cxphoe.github.io/game-engine/docs/bird.html)
 
 > 基于 canvas 以及原生 js 实现的 2D 游戏引擎
 
